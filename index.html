@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aryan Techie | Digital Creator, CS Student, Systems Builder</title>
+  <meta name="description" content="Aryan Techie — CS student at IIT Patna, creator of mindful digital tools, open source contributor, and founder of AROICE. Explore projects, writings, and connect with Aryan.">
+  <meta name="keywords" content="Aryan Techie, AROICE, IIT Patna, digital creator, open source, systems, productivity, intentional living, tech, philosophy, argon, ashes, smart scroll, insight journal, creative systems, github, instagram, x, linkedin, pinterest">
+  <meta name="author" content="Aryan Techie">
+  <meta property="og:title" content="Aryan Techie | Digital Creator, CS Student, Systems Builder">
+  <meta property="og:description" content="Explore Aryan Techie's digital creations, open source projects, and writings. Visit aroice.in for more.">
+  <meta property="og:url" content="https://aryantechie.com">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/76107940?v=4">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aryan Techie | Digital Creator, CS Student, Systems Builder">
+  <meta name="twitter:description" content="Explore Aryan Techie's digital creations, open source projects, and writings. Visit aroice.in for more.">
+  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/76107940?v=4">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/76107940?v=4" type="image/png">
+  <style>
+    :root {
+      --primary: #f7f6f3;
+      --accent: #18181b;
+      --text: #23242a;
+      --muted: #6c6c6c;
+      --radius: 18px;
+      --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
+      --font-serif: 'Georgia', 'Times New Roman', serif;
+      --max-width: 700px;
+      --container-padding: 4.5rem 2.8rem 2.8rem 2.8rem;
+      --container-padding-mobile: 2rem 1rem 1.2rem 1rem;
+      --shadow: 0 8px 32px 0 rgba(0,0,0,0.08);
+      --transition: 0.18s cubic-bezier(.4,0,.2,1);
+      --accent-bg: repeating-linear-gradient(135deg, #f3f3f3 0 8px, #eaeaea 8px 16px);
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--primary);
+      color: var(--text);
+      font-family: var(--font-main);
+      font-size: 20px;
+      min-height: 100vh;
+      letter-spacing: 0.01em;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: var(--primary);
+      transition: background 0.4s;
+      overflow-x: hidden;
+    }
+    .navbar {
+      width: 100vw;
+      max-width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0.7rem 1.2rem 0.7rem 1.2rem;
+      background: none;
+      border: none;
+      box-sizing: border-box;
+      position: static;
+      top: auto;
+      z-index: 1;
+      box-shadow: none;
+      backdrop-filter: none;
+      transition: none;
+    }
+    .socials {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.2rem;
+      margin-bottom: 0;
+    }
+    .socials a {
+      color: #e5e5e5;
+      font-size: 1.35rem;
+      transition: color 0.2s, background 0.2s;
+      border-radius: 50%;
+      padding: 0.25rem;
+      line-height: 1;
+      opacity: 0.92;
+    }
+    .socials a:hover {
+      color: #fff;
+      background: #23242a;
+      opacity: 1;
+    }
+    .container {
+      background: none;
+      border-radius: var(--radius);
+      box-shadow: none;
+      padding: var(--container-padding);
+      max-width: var(--max-width);
+      width: 100%;
+      text-align: left;
+      margin: 4.5rem auto 2.5rem auto;
+      border: none;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2.2rem;
+      transition: box-shadow var(--transition), background var(--transition);
+    }
+    .avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      margin-bottom: 1.2rem;
+      border: 2.5px solid var(--accent);
+      object-fit: cover;
+      background: #18181b;
+      padding: 2px;
+      box-sizing: border-box;
+      transition: box-shadow var(--transition), border-color var(--transition);
+      align-self: center;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.12);
+    }
+    .avatar:hover {
+      border-color: #fff;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin: 0 0 0.7rem 0;
+      color: var(--text);
+      letter-spacing: 0.01em;
+      line-height: 1.13;
+      text-align: left;
+      position: relative;
+      z-index: 1;
+      background: none;
+      display: inline-block;
+    }
+    .accent-bg {
+      background: var(--accent-bg);
+      display: inline-block;
+      padding: 0.2em 0.1em 0.2em 0.1em;
+      border-radius: 6px;
+      margin-right: 0.1em;
+      box-shadow: 0 2px 8px #eaeaea60;
+    }
+    .subtitle {
+      font-size: 1.18rem;
+      color: var(--accent);
+      margin-bottom: 0.7rem;
+      font-weight: 700;
+      line-height: 1.5;
+      text-align: left;
+      letter-spacing: 0.01em;
+      font-family: var(--font-main);
+    }
+    .desc {
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+      line-height: 1.6;
+      text-align: left;
+      letter-spacing: 0.01em;
+      font-family: var(--font-main);
+    }
+    .note {
+      background: none;
+      border-radius: var(--radius);
+      padding: 0.7rem 0.2rem;
+      margin-bottom: 0.2rem;
+      color: var(--text);
+      font-size: 1.05rem;
+      font-weight: 500;
+      border: none;
+      box-shadow: none;
+      line-height: 1.6;
+      text-align: left;
+    }
+    .note.highlight {
+      background: linear-gradient(90deg, #23242a 80%, #23242a88 100%);
+      border: 1.5px solid #2c2d34;
+      color: #e5e5e5;
+      font-weight: 700;
+      box-shadow: 0 2px 16px #23242a30;
+      padding: 1.2rem 1.4rem;
+      margin-bottom: 1.1rem;
+      text-align: left;
+      letter-spacing: 0.01em;
+      transition: box-shadow var(--transition), background var(--transition);
+    }
+    .btn-row {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+    .btn {
+      display: inline-block;
+      font-family: var(--font-main);
+      font-weight: 700;
+      font-size: 1.08rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      box-shadow: 0 2px 8px #eaeaea40;
+      transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: #23242a;
+      color: #fff;
+      box-shadow: 0 4px 24px #23242a40;
+      transform: translateY(-2px) scale(1.03);
+    }
+    .btn-secondary {
+      background: none;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .btn-secondary:hover {
+      background: #f3f3f3;
+      color: #23242a;
+      box-shadow: 0 4px 24px #eaeaea60;
+      transform: translateY(-2px) scale(1.03);
+    }
+    .footer {
+      font-size: 1.04rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 1.3rem 0 0.3rem 0;
+      border-top: var(--glass-border);
+      opacity: 0.88;
+      letter-spacing: 0.01em;
+      background: var(--glass-bg);
+      border-radius: 0 0 var(--radius) var(--radius);
+      box-shadow: 0 -2px 16px #23242a30;
+      position: static;
+      backdrop-filter: blur(12px) saturate(1.2);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .sticky-footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100vw;
+      background: var(--glass-bg);
+      z-index: 10;
+      box-shadow: 0 -2px 16px #23242a30;
+      border-radius: 0;
+      margin-top: 0;
+      border-top: var(--glass-border);
+      backdrop-filter: blur(12px) saturate(1.2);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 0.7rem 0.7rem 0.3rem 0.7rem;
+        box-shadow: var(--shadow);
+      }
+      .container {
+        padding: 1.2rem 0.7rem 1.2rem 0.7rem !important;
+        max-width: 99vw;
+        margin: 1.2rem auto 0.7rem auto;
+        gap: 0.7rem;
+      }
+      h1 {
+        font-size: 2.7rem !important;
+      }
+      .btn-row {
+        flex-direction: column !important;
+        gap: 0.7rem !important;
+        align-items: stretch !important;
+      }
+      .btn-row a {
+        font-size: 0.98rem !important;
+        padding: 0.6rem 1.1rem !important;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .subtitle {
+        font-size: 0.98rem !important;
+      }
+      .desc {
+        font-size: 0.98rem !important;
+      }
+      div[style*="Connect via Email"] {
+        padding: 0.7rem 0.7rem !important;
+        max-width: 99vw !important;
+        font-size: 0.98rem !important;
+      }
+    }
+    .btn-row a:hover {
+      background: #18181b !important;
+      color: #fff !important;
+      box-shadow: 0 4px 24px #23242a40 !important;
+      transform: translateY(-2px) scale(1.04) !important;
+    }
+    .btn-row a:active {
+      background: #23242a !important;
+      color: #fff !important;
+      box-shadow: 0 2px 8px #23242a20 !important;
+      transform: scale(0.98) !important;
+    }
+  </style>
+  <script>
+    // Simple fade-in effect
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 0.8s';
+        document.body.style.opacity = 1;
+      }, 120);
+    });
+  </script>
+</head>
+  <body>
+    <nav class="navbar"></nav>
+    <main class="container">
+      <h1><span class="accent-bg">Aryan Techie</span> <em style="font-style:italic;font-weight:500;font-size:1.02rem;line-height:1.3;display:block;margin-top:0.2em;">CS Student @ IIT Patna</em></h1>
+      <div class="subtitle" style="font-size:1.02rem;font-weight:500;color:var(--muted);margin-bottom:0.5rem;">Digital Creator &middot; Founder of <a href="https://aroice.in" style="color:var(--accent);text-decoration:underline;font-weight:700;" target="_blank" rel="noopener">AROICE</a></div>
+      <div class="desc">Building mindful digital tools, open source projects, and creative systems. Explore my work, writings, and connect for collaborations.</div>
+      <div class="btn-row" style="gap:0.8rem;margin-top:1.1rem;">
+        <a href="https://aroice.in" class="btn btn-primary" target="_blank" rel="noopener" style="background:#23242a;color:#fff;border-radius:24px;padding:0.7rem 1.6rem;font-size:1.02rem;font-weight:600;box-shadow:0 2px 8px #eaeaea40;transition:background 0.18s, box-shadow 0.18s, transform 0.18s;">Visit AROICE.in</a>
+        <a href="https://github.com/aryantechie" class="btn btn-secondary" target="_blank" rel="noopener" style="background:#fff;color:#23242a;border:1.5px solid #23242a;border-radius:24px;padding:0.7rem 1.6rem;font-size:1.02rem;font-weight:600;box-shadow:0 2px 8px #eaeaea40;transition:background 0.18s, box-shadow 0.18s, transform 0.18s;">&#8594; Explore GitHub</a>
+      </div>
+      <div style="margin:2.2rem 0 0 0;padding:1rem 1.2rem;background:var(--accent-bg);border-radius:14px;box-shadow:0 2px 12px #eaeaea40;max-width:420px;display:flex;flex-direction:column;align-items:flex-start;">
+        <span style="font-size:1.02rem;color:var(--accent);font-weight:600;letter-spacing:0.01em;margin-bottom:0.4em;">Connect via Email</span>
+        <a href="mailto:aryan@aroice.in" style="font-size:1.02rem;color:#23242a;font-weight:600;text-decoration:underline;word-break:break-all;">aryan@aroice.in</a>
+        <span style="font-size:0.98rem;color:var(--muted);margin-top:0.5em;">Feel free to reach out for collaborations, questions, or just to say hi!</span>
+      </div>
+    </main>
+</body>
+</html>
