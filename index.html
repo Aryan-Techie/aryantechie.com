@@ -270,6 +270,32 @@
       backdrop-filter: blur(12px) saturate(1.2);
       transition: background var(--transition), box-shadow var(--transition);
     }
+    .floating-email-btn {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.2rem;
+      z-index: 100;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 16px #23242a30;
+      transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      opacity: 0.96;
+    }
+    .floating-email-btn:hover {
+      background: #23242a;
+      box-shadow: 0 4px 24px #23242a40;
+      transform: translateY(-2px) scale(1.07);
+      opacity: 1;
+    }
     @media (max-width: 600px) {
       .navbar {
         padding: 0.7rem 0.7rem 0.3rem 0.7rem;
@@ -306,6 +332,16 @@
         max-width: 99vw !important;
         font-size: 0.98rem !important;
       }
+      .floating-email-btn {
+        top: 0.7rem;
+        right: 0.7rem;
+        width: 40px;
+        height: 40px;
+      }
+      .floating-email-btn svg {
+        width: 18px;
+        height: 18px;
+      }
     }
     .btn-row a:hover {
       background: #18181b !important;
@@ -341,11 +377,10 @@
         <a href="https://aroice.in" class="btn btn-primary" target="_blank" rel="noopener" style="background:#23242a;color:#fff;border-radius:24px;padding:0.7rem 1.6rem;font-size:1.02rem;font-weight:600;box-shadow:0 2px 8px #eaeaea40;transition:background 0.18s, box-shadow 0.18s, transform 0.18s;">Visit AROICE.in</a>
         <a href="https://github.com/aryantechie" class="btn btn-secondary" target="_blank" rel="noopener" style="background:#fff;color:#23242a;border:1.5px solid #23242a;border-radius:24px;padding:0.7rem 1.6rem;font-size:1.02rem;font-weight:600;box-shadow:0 2px 8px #eaeaea40;transition:background 0.18s, box-shadow 0.18s, transform 0.18s;">&#8594; Explore GitHub</a>
       </div>
-      <div style="margin:2.2rem 0 0 0;padding:1rem 1.2rem;background:var(--accent-bg);border-radius:14px;box-shadow:0 2px 12px #eaeaea40;max-width:420px;display:flex;flex-direction:column;align-items:flex-start;">
-        <span style="font-size:1.02rem;color:var(--accent);font-weight:600;letter-spacing:0.01em;margin-bottom:0.4em;">Connect via Email</span>
-        <a href="mailto:aryan@aroice.in" style="font-size:1.02rem;color:#23242a;font-weight:600;text-decoration:underline;word-break:break-all;">aryan@aroice.in</a>
-        <span style="font-size:0.98rem;color:var(--muted);margin-top:0.5em;">Feel free to reach out for collaborations, questions, or just to say hi!</span>
-      </div>
+      <!-- Floating Email Button -->
+      <a href="mailto:aryan@aroice.in" class="floating-email-btn" title="Connect via Email">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="12" fill="#fff"/><path d="M6.5 8.5L12 13L17.5 8.5" stroke="#23242a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="5" y="7" width="14" height="10" rx="3" stroke="#23242a" stroke-width="1.5"/></svg>
+      </a>
     </main>
 </body>
 </html>
