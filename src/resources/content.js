@@ -135,12 +135,12 @@ const about = {
                 ],
         images: [
           // optional: leave the array empty if you don't want to display images
-          {
-            src: "",
-            alt: "AROICE Project",
-            width: 16,
-            height: 9,
-          },
+          // {
+          //   src: "",
+          //   alt: "AROICE Project",
+          //   width: 16,
+          //   height: 9,
+          // },
         ],
       },
       {
@@ -180,18 +180,18 @@ const about = {
         description: <>Love building full-stack projects and tools using modern JS/TS.</>,
         // optional: leave the array empty if you don't want to display images
         images: [
-          {
-            src: "",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
+          // {
+          //   src: "",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
+          // {
+          //   src: "",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
         ],
       },
       {
@@ -199,12 +199,12 @@ const about = {
         description: <>Built extensions like <strong>ARGON</strong> and <strong>Ashes</strong>, focused on productivity, intentionality, and making everyday life better. Designing digital tools that simplify attention and strengthen intent.</>,
         // optional: leave the array empty if you don't want to display images
         images: [
-          {
-            src: "",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
+          // {
+          //   src: "",
+          //   alt: "Project image",
+          //   width: 16,
+          //   height: 9,
+          // },
         ],
       },
       {
@@ -248,11 +248,11 @@ const gallery = {
   // Images by https://lorant.one
   // These are placeholder images, replace with your own
   images: [
-    {
-      src: "",
-      alt: "image",
-      orientation: "horizontal",
-    },
+    // {
+    //   src: "",
+    //   alt: "image",
+    //   orientation: "horizontal",
+    // },
   ],
 };
 
