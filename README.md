@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="public/images/avatar.jpg" alt="Aryan Techie" width="120" style="border-radius: 50%;" />
+  <img src="public/images/avatar-cropped.png" alt="Aryan Techie" width="120" />
 </p>
 
 <h1 align="center">Aryan Techie</h1>
@@ -141,9 +141,6 @@ If you resonate with my work, want to collaborate, or just want to say hi, [reac
 ---
 
 <p align="center">
-
-  
-
   <em>
     <h3 align="center" style="font-family: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', monospace; font-style: italic; margin-top: 0;">
       <b>“Stay curious.<br>
@@ -159,7 +156,7 @@ If you resonate with my work, want to collaborate, or just want to say hi, [reac
   <br>
 
   <p align="center">
-    <a href="https://youtube.com/@aroice"><img src="https://img.shields.io/youtube/channel/subscribers/UCtLe5rM6QC8Kz4vCJwGwmJQ?label=Subscribe%20on%20YouTube&style=social" /></a>
+    <a href="https://youtube.com/@aroice"><img src="https://img.shields.io/youtube/channel/subscribers/UCtLe5rM6QC8Kz4vCJwGwmJQ?label=Subscribe%20on%20YouTube&style=social" /></a> <br>
     <a href="https://github.com/aryan-techie"><img src="https://img.shields.io/github/followers/aryan-techie?label=Follow%20on%20GitHub&style=social" /></a>
     <a href="https://twitter.com/aroicein"><img src="https://img.shields.io/twitter/follow/aroicein?label=Follow%20on%20Twitter&style=social" /></a>
   </p>
