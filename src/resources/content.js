@@ -16,7 +16,7 @@ const person = {
 
 const newsletter = {
   display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Subscribe to {person.firstName}&rsquo;s Newsletter</>,
   description: (
     <>
       On The Insight Journal, I share ideas at the intersection of code, clarity, creativity, and systems.
