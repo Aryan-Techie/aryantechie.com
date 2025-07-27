@@ -10,7 +10,7 @@ const person = {
   avatar: "/images/avatar.jpg",
   email: "aryan@aroice.in",
   timezone: "Asia/Kolkata",
-  timezoneLabel: "Asia/India",
+  timezoneLabel: "India/Haryana",
   languages: ["English", "Hindi"], // optional: Leave the array empty if you don't want to display languages
 };
 
