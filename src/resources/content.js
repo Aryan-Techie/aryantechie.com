@@ -16,7 +16,7 @@ const person = {
 
 const newsletter = {
   display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Subscribe to {person.firstName}&rsquo;s Newsletter</>,
   description: (
     <>
       On The Insight Journal, I share ideas at the intersection of code, clarity, creativity, and systems.
@@ -82,7 +82,7 @@ const home = {
     href: "https://argon.aroice.in",
   },
   subline: (
-    <>I'm Aryan, a CS student at IIT Patna and the creator of AROICE, where I build thoughtful tools, products,<br></br> and ideas that blend code and clarity.</>
+    <>I&rsquo;m Aryan, a CS student at IIT Patna and the creator of AROICE, where I build thoughtful tools, products,<br></br> and ideas that blend code and clarity.</>
   ),
 };
 
