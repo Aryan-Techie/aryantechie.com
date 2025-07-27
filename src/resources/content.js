@@ -248,6 +248,11 @@ const gallery = {
   // Images by https://lorant.one
   // These are placeholder images, replace with your own
   images: [
+    {
+      src: "",
+      alt: "image",
+      orientation: "horizontal",
+    },
   ],
 };
 
