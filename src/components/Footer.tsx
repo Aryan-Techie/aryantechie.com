@@ -25,14 +25,14 @@ export const Footer = () => {
         <Text variant="body-default-s" onBackground="neutral-strong">
           <Text onBackground="neutral-weak">© {currentYear} /</Text>
           <Text onBackground="neutral-weak">
+            <Text paddingX="4">{person.name}</Text>
             {/* Usage of this template requires attribution.*/}
+            /{""}
             <SmartLink
               href="https://aroice.in"
               >
               AROICE
             </SmartLink>
-              /{""}
-          <Text paddingX="4">{person.name}</Text>
           </Text>
         </Text>
         <Flex gap="16">
