@@ -135,12 +135,12 @@ const about = {
                 ],
         images: [
           // optional: leave the array empty if you don't want to display images
-          // {
-          //   src: "",
-          //   alt: "AROICE Project",
-          //   width: 16,
-          //   height: 9,
-          // },
+          {
+            src: "/images/projects/work/projects.jpg",
+            alt: "ARGON - ASHES - SMART SCROLL - Current Projects by Aryan Techie - AROICE",
+            width: 16,
+            height: 9,
+          },
         ],
       },
       {
@@ -153,7 +153,14 @@ const about = {
     Each video is a quiet space to slow down, think clearly, and reconnect with what matters.
           </>,
         ],
-        images: [],
+        images: [
+          {
+            src: "/images/projects/work/youtube.jpg",
+            alt: "AROICE YouTube Channel - Aryan Techie",
+            width: 16,
+            height: 9,
+          },
+        ],
       },
     ],
   },
