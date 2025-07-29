@@ -1,9 +1,12 @@
-import { getPosts } from '@/utils/utils'; // check this path
+
+export const runtime = "nodejs";
+
+import { getPosts } from '@/utils/utils';
 import { baseURL, blog, person } from '@/resources';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const posts = getPosts(['src', 'app', 'blog', 'posts']); // adjust if your posts are elsewhere
+  const posts = getPosts(['src', 'app', 'blog', 'posts']);
 
   const sortedPosts = posts.sort((a, b) => 
     new Date(b.metadata.publishedAt).getTime() -
