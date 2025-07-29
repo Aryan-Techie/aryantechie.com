@@ -94,6 +94,12 @@ export default async function RootLayout({
             `,
           }}
         />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="The Insight Journal - Aryan Techie's Blog - AROICE"
+          href="https://aryantechie.com/api/rss"
+        />
       </head>
       <Providers>
         <Column as="body" background="page" fillWidth style={{minHeight: "100vh"}} margin="0" padding="0" horizontal="center">
