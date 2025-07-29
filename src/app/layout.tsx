@@ -98,7 +98,7 @@ export default async function RootLayout({
           rel="alternate"
           type="application/rss+xml"
           title="The Insight Journal - Aryan Techie's Blog - AROICE"
-          href="https://aryantechie.com/api/rss"
+          href="https://www.aryantechie.com/api/rss"
         />
       </head>
       <Providers>
