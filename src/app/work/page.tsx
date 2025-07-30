@@ -1,4 +1,4 @@
-import { Column, Meta, Schema } from "@once-ui-system/core";
+import { Column, Meta, Schema, Heading } from "@once-ui-system/core";
 import { baseURL, about, person, work } from "@/resources";
 import { Projects } from "@/components/work/Projects";
 
@@ -28,6 +28,14 @@ export default function Work() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
+      <Heading marginBottom="xs" variant="display-strong-s">
+        {work.title}
+      </Heading>
+      {work.subtitle && (
+        <Heading marginBottom="l" variant="heading-default-xl" as="h2" onBackground="neutral-weak">
+          {work.subtitle}
+        </Heading>
+      )}
       <Projects />
     </Column>
   );

@@ -29,15 +29,20 @@ export default function Blog() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Heading marginBottom="l" variant="display-strong-s">
+      <Heading marginBottom="xs" variant="display-strong-s">
         {blog.title}
       </Heading>
+      {blog.subtitle && (
+        <Heading marginBottom="l" variant="heading-default-xl" as="h2" onBackground="neutral-weak">
+          {blog.subtitle}
+        </Heading>
+      )}
       <Column
-				fillWidth flex={1}>
-				<Posts range={[1,1]} thumbnail direction="column"/>
-				<Posts range={[2,3]} thumbnail/>
-				<Posts range={[4]} columns="2"/>
-			</Column>
+        fillWidth flex={1}>
+        <Posts range={[1,1]} thumbnail direction="column"/>
+        <Posts range={[2,3]} thumbnail/>
+        <Posts range={[4]} columns="2"/>
+      </Column>
       {newsletter.display && <Mailchimp newsletter={newsletter} />}
     </Column>
   );
