@@ -6,13 +6,27 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     // Log resolved path for debugging
-    const pathInfo = require('path').join(process.cwd(), 'src', 'app', 'blog', 'posts');
+    const path = require('path');
     const fs = require('fs');
-    const exists = fs.existsSync(pathInfo);
-    console.log('RSS API: resolved posts path:', pathInfo, 'exists:', exists);
+    const blogPath = path.join(process.cwd(), 'src', 'app', 'blog', 'posts');
+    const workPath = path.join(process.cwd(), 'src', 'app', 'work', 'projects');
+    const blogExists = fs.existsSync(blogPath);
+    const workExists = fs.existsSync(workPath);
+    console.log('RSS API: blog path:', blogPath, 'exists:', blogExists);
+    console.log('RSS API: work path:', workPath, 'exists:', workExists);
 
-    const posts = getPosts(['src', 'app', 'blog', 'posts']);
-    const sortedPosts = posts.sort((a, b) => 
+    const blogPosts = getPosts(['src', 'app', 'blog', 'posts']).map(post => ({
+      ...post,
+      _rssType: 'blog',
+      _rssLink: `${baseURL}/blog/${post.slug}`
+    }));
+    const workPosts = getPosts(['src', 'app', 'work', 'projects']).map(post => ({
+      ...post,
+      _rssType: 'work',
+      _rssLink: `${baseURL}/work/${post.slug}`
+    }));
+    const allPosts = [...blogPosts, ...workPosts];
+    const sortedPosts = allPosts.sort((a, b) =>
       new Date(b.metadata.publishedAt).getTime() -
       new Date(a.metadata.publishedAt).getTime()
     );
@@ -32,13 +46,14 @@ export async function GET() {
         (post) => `
     <item>
       <title>${post.metadata.title}</title>
-      <link>${baseURL}/blog/${post.slug}</link>
-      <guid>${baseURL}/blog/${post.slug}</guid>
+      <link>${post._rssLink}</link>
+      <guid>${post._rssLink}</guid>
       <pubDate>${new Date(post.metadata.publishedAt).toUTCString()}</pubDate>
       <description><![CDATA[${post.metadata.summary}]]></description>
       ${post.metadata.image ? `<enclosure url="${baseURL}${post.metadata.image}" type="image/jpeg" />` : ''}
       ${post.metadata.tag ? `<category>${post.metadata.tag}</category>` : ''}
       <author>${person.email || 'noreply@example.com'} (${person.name})</author>
+      <category>${post._rssType}</category>
     </item>`
       )
       .join('')}
