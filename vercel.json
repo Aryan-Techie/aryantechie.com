@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/rss",
+      "destination": "/api/rss",
+      "permanent": true
+    }
+  ],
+  "functions": {
+    "src/app/api/rss/route.ts": {
+      "includeFiles": "src/app/blog/posts/**"
+    }
+  }
+}
