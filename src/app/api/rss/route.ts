@@ -1,16 +1,16 @@
-
 import { getPosts } from '@/utils/utils';
 import { baseURL, blog, person } from '@/resources';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  try {
-    const posts = getPosts(['src', 'app', 'blog', 'posts']);
-    const sortedPosts = posts.sort((a, b) => 
-      new Date(b.metadata.publishedAt).getTime() -
-      new Date(a.metadata.publishedAt).getTime()
-    );
-    const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
+  const posts = getPosts(['src', 'app', 'blog', 'posts']);
+
+  const sortedPosts = posts.sort((a, b) => 
+    new Date(b.metadata.publishedAt).getTime() -
+    new Date(a.metadata.publishedAt).getTime()
+  );
+
+  const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${blog.title}</title>
@@ -38,14 +38,11 @@ export async function GET() {
       .join('')}
   </channel>
 </rss>`;
-    return new NextResponse(rssXml, {
-      headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
-      },
-    });
-  } catch (err: any) {
-    console.error('RSS API error:', err);
-    return new NextResponse(`RSS API error: ${err?.message || err}`, { status: 500 });
-  }
+
+  return new NextResponse(rssXml, {
+    headers: {
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400',
+    },
+  });
 }
