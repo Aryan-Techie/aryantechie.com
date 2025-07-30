@@ -13,8 +13,8 @@ const routes = {
 };
 
 const display = {
-  timezone: true,
-  time: true,
+  timezone: false,
+  time: false,
   themeSwitcher: true
 };
 
