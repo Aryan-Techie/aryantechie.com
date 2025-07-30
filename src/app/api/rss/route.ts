@@ -1,6 +1,3 @@
-
-export const runtime = "nodejs";
-
 import { getPosts } from '@/utils/utils';
 import { baseURL, blog, person } from '@/resources';
 import { NextResponse } from 'next/server';
