@@ -31,30 +31,88 @@ export async function GET() {
       new Date(a.metadata.publishedAt).getTime()
     );
     const rssXml = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" 
+     xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>${blog.title}</title>
     <link>${baseURL}/blog</link>
     <description>${blog.description}</description>
-    <language>en</language>
+    <language>en-us</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <pubDate>${new Date().toUTCString()}</pubDate>
+    <ttl>60</ttl>
+    <generator>AROICE RSS Generator</generator>
+    <copyright>© ${new Date().getFullYear()} ${person.name}. All rights reserved.</copyright>
+    <category>Technology/Web Development/Personal Blog</category>
     <atom:link href="${baseURL}/api/rss" rel="self" type="application/rss+xml" />
-    <managingEditor>${person.email || 'mail@aroice.in'} (${person.name})</managingEditor>
-    <webMaster>${person.email || 'mail@aroice.in'} (${person.name})</webMaster>
+    <image>
+      <url>${baseURL}/images/avatar-cropped.png</url>
+      <title>${blog.title}</title>
+      <link>${baseURL}/blog</link>
+      <width>144</width>
+      <height>144</height>
+      <description>Profile image for ${person.name}</description>
+    </image>
+    <managingEditor>${person.email || 'aryan@aroice.in'}</managingEditor>
+    <webMaster>${person.email || 'aryan@aroice.in'}</webMaster>
+    <dc:creator>${person.name}</dc:creator>
+    <dc:publisher>${person.name}</dc:publisher>
     ${sortedPosts
       .map(
-        (post) => `
+        (post) => {
+          const fullImageUrl = post.metadata.image ? 
+            (post.metadata.image.startsWith('http') ? post.metadata.image : `${baseURL}${post.metadata.image}`) : 
+            `${baseURL}/images/og/home-new.png`;
+          
+          // Properly sanitize content for XML
+          const sanitizeForXML = (text: string | undefined | null): string => {
+            if (!text) return '';
+            return text
+              .replace(/&/g, '&amp;')
+              .replace(/</g, '&lt;')
+              .replace(/>/g, '&gt;')
+              .replace(/"/g, '&quot;')
+              .replace(/'/g, '&#39;')
+              .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, ''); // Remove control characters
+          };
+          
+          const contentPreview = post.content ? 
+            sanitizeForXML(post.content.replace(/^---[\s\S]*?---/, '').trim().substring(0, 500)) : 
+            sanitizeForXML(post.metadata.summary);
+            
+          return `
     <item>
-      <title>${post.metadata.title}</title>
+      <title><![CDATA[${sanitizeForXML(post.metadata.title)}]]></title>
       <link>${post._rssLink}</link>
-      <guid>${post._rssLink}</guid>
+      <guid isPermaLink="true">${post._rssLink}</guid>
       <pubDate>${new Date(post.metadata.publishedAt).toUTCString()}</pubDate>
-      <description><![CDATA[${post.metadata.summary}]]></description>
-      ${post.metadata.image ? `<enclosure url="${baseURL}${post.metadata.image}" type="image/jpeg" />` : ''}
-      ${post.metadata.tag ? `<category>${post.metadata.tag}</category>` : ''}
-      <author>${person.email || 'noreply@example.com'} (${person.name})</author>
-      <category>${post._rssType}</category>
-    </item>`
+      <description><![CDATA[${sanitizeForXML(post.metadata.summary)}]]></description>
+      <content:encoded><![CDATA[
+        ${post.metadata.image ? `<img src="${fullImageUrl}" alt="${sanitizeForXML(post.metadata.title)}" style="max-width: 100%; height: auto; margin-bottom: 1em;" />` : ''}
+        <p><strong>Summary:</strong> ${sanitizeForXML(post.metadata.summary)}</p>
+        ${contentPreview ? `<div style="margin-top: 1em;">${contentPreview}...</div>` : ''}
+        <p style="margin-top: 1.5em;"><a href="${post._rssLink}">Read the full article →</a></p>
+      ]]></content:encoded>
+      <dc:creator><![CDATA[${sanitizeForXML(person.name)}]]></dc:creator>
+      <dc:date>${new Date(post.metadata.publishedAt).toISOString()}</dc:date>
+      ${post.metadata.image ? `
+      <enclosure url="${fullImageUrl}" type="image/jpeg" length="0"/>
+      <media:content url="${fullImageUrl}" type="image/jpeg" medium="image">
+        <media:title><![CDATA[${sanitizeForXML(post.metadata.title)}]]></media:title>
+        <media:description><![CDATA[${sanitizeForXML(post.metadata.summary)}]]></media:description>
+      </media:content>` : ''}
+      ${post.metadata.tag ? `<category domain="${baseURL}/blog/category/${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(',')).toLowerCase().replace(/\s+/g, '-') : sanitizeForXML(String(post.metadata.tag)).toLowerCase().replace(/\s+/g, '-')}">${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(', ')) : sanitizeForXML(String(post.metadata.tag))}</category>` : ''}
+      <category domain="${baseURL}/${post._rssType}">${post._rssType}</category>
+      <author>${person.email || 'aryan@aroice.in'}</author>
+      <dc:creator><![CDATA[${sanitizeForXML(person.name)}]]></dc:creator>
+      <source url="${baseURL}/api/rss">${sanitizeForXML(blog.title)}</source>
+      ${post.metadata.team && post.metadata.team.length > 0 ? 
+        post.metadata.team.map(member => `<dc:contributor><![CDATA[${sanitizeForXML(member.name)} (${sanitizeForXML(member.role)})]]></dc:contributor>`).join('\n      ') : ''}
+    </item>`;
+        }
       )
       .join('')}
   </channel>
