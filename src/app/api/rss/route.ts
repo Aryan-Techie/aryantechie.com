@@ -140,7 +140,7 @@ export async function GET(request: Request) {
       ]]></content:encoded>
       ${coverImage ? `
       <enclosure url="${fullImageUrl}" type="image/jpeg" length="0"/>` : ''}
-      ${post.metadata.tag && (Array.isArray(post.metadata.tag) ? post.metadata.tag.length > 0 : post.metadata.tag.trim() !== '') ? `<category domain="${baseURL}/blog/category/${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(',')).toLowerCase().replace(/\s+/g, '-') : sanitizeForXML(String(post.metadata.tag)).toLowerCase().replace(/\s+/g, '-')}">${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(', ')) : sanitizeForXML(String(post.metadata.tag))}</category>` : ''}
+      ${post.metadata.tag && (Array.isArray(post.metadata.tag) ? post.metadata.tag.length > 0 : post.metadata.tag.trim() !== '') ? `<category domain="${baseURL}/${post._rssType}">${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(', ')) : sanitizeForXML(String(post.metadata.tag))}</category>` : ''}
       <category domain="${baseURL}/${post._rssType}">${post._rssType}</category>
       <author>${person.email || 'aryan@aroice.in'} (${person.name || 'Aryan Techie'})</author>
       <source url="${selfUrl}">${sanitizeForXML(blog.title)}</source>
