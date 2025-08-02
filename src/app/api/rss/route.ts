@@ -99,7 +99,11 @@ export async function GET() {
       <dc:creator><![CDATA[${sanitizeForXML(person.name)}]]></dc:creator>
       <dc:date>${new Date(post.metadata.publishedAt).toISOString()}</dc:date>
       ${post.metadata.image ? `
-      <enclosure url="${fullImageUrl}" type="image/jpeg" length="0"/>` : ''}
+      <enclosure url="${fullImageUrl}" type="image/jpeg" length="0"/>
+      <media:content url="${fullImageUrl}" type="image/jpeg" medium="image">
+        <media:title><![CDATA[${sanitizeForXML(post.metadata.title)}]]></media:title>
+        <media:description><![CDATA[${sanitizeForXML(post.metadata.summary)}]]></media:description>
+      </media:content>` : ''}
       ${post.metadata.tag ? `<category domain="${baseURL}/blog/category/${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(',')).toLowerCase().replace(/\s+/g, '-') : sanitizeForXML(String(post.metadata.tag)).toLowerCase().replace(/\s+/g, '-')}">${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(', ')) : sanitizeForXML(String(post.metadata.tag))}</category>` : ''}
       <category domain="${baseURL}/${post._rssType}">${post._rssType}</category>
       <author>${person.email || 'aryan@aroice.in'}</author>
