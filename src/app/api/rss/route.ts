@@ -3,8 +3,12 @@ import { getPosts } from '@/utils/utils';
 import { baseURL, blog, person } from '@/resources';
 import { NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    // Get the actual request URL for proper self-reference
+    const requestUrl = new URL(request.url);
+    const selfUrl = `${requestUrl.protocol}//${requestUrl.host}/api/rss`;
+    
     // Log resolved path for debugging
     const path = require('path');
     const fs = require('fs');
@@ -47,7 +51,7 @@ export async function GET() {
     <generator>AROICE RSS Generator</generator>
     <copyright>© ${new Date().getFullYear()} ${person.name}. All rights reserved.</copyright>
     <category>Technology/Web Development/Personal Blog</category>
-    <atom:link href="${baseURL}/api/rss" rel="self" type="application/rss+xml" />
+    <atom:link href="${selfUrl}" rel="self" type="application/rss+xml" />
     <image>
       <url>${baseURL}/images/avatar-cropped.png</url>
       <title>${blog.title}</title>
@@ -56,10 +60,8 @@ export async function GET() {
       <height>144</height>
       <description>Profile image for ${person.name}</description>
     </image>
-    <managingEditor>${person.email || 'aryan@aroice.in'}</managingEditor>
-    <webMaster>${person.email || 'aryan@aroice.in'}</webMaster>
-    <dc:creator>${person.name}</dc:creator>
-    <dc:publisher>${person.name}</dc:publisher>
+    <managingEditor>${person.email || 'aryan@aroice.in'} (${person.name})</managingEditor>
+    <webMaster>${person.email || 'aryan@aroice.in'} (${person.name})</webMaster>
     ${sortedPosts
       .map(
         (post) => {
@@ -121,24 +123,17 @@ export async function GET() {
       <pubDate>${new Date(post.metadata.publishedAt).toUTCString()}</pubDate>
       <description><![CDATA[${sanitizeForXML(post.metadata.summary)}]]></description>
       <content:encoded><![CDATA[
-        ${post.metadata.image ? `<img src="${fullImageUrl}" alt="${sanitizeForXML(post.metadata.title)}" style="max-width: 100%; height: auto; margin-bottom: 1em;" />` : ''}
+        ${post.metadata.image ? `<img src="${fullImageUrl}" alt="${sanitizeForXML(post.metadata.title)}" />` : ''}
         <p><strong>Summary:</strong> ${sanitizeForXML(post.metadata.summary)}</p>
-        ${contentPreview ? `<div style="margin-top: 1em;">${contentPreview}...</div>` : ''}
-        <p style="margin-top: 1.5em;"><a href="${post._rssLink}">Read the full article →</a></p>
+        ${contentPreview ? `<div>${contentPreview}...</div>` : ''}
+        <p><a href="${post._rssLink}">Read the full article →</a></p>
       ]]></content:encoded>
-      <dc:creator><![CDATA[${sanitizeForXML(person.name)}]]></dc:creator>
-      <dc:date>${new Date(post.metadata.publishedAt).toISOString()}</dc:date>
       ${post.metadata.image ? `
-      <enclosure url="${fullImageUrl}" type="image/jpeg" length="0"/>
-      <media:content url="${fullImageUrl}" type="image/jpeg" medium="image">
-        <media:title><![CDATA[${sanitizeForXML(post.metadata.title)}]]></media:title>
-        <media:description><![CDATA[${sanitizeForXML(post.metadata.summary)}]]></media:description>
-      </media:content>` : ''}
-      ${post.metadata.tag ? `<category domain="${baseURL}/blog/category/${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(',')).toLowerCase().replace(/\s+/g, '-') : sanitizeForXML(String(post.metadata.tag)).toLowerCase().replace(/\s+/g, '-')}">${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(', ')) : sanitizeForXML(String(post.metadata.tag))}</category>` : ''}
+      <enclosure url="${fullImageUrl}" type="image/jpeg" length="0"/>` : ''}
+      ${post.metadata.tag && (Array.isArray(post.metadata.tag) ? post.metadata.tag.length > 0 : post.metadata.tag.trim() !== '') ? `<category domain="${baseURL}/blog/category/${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(',')).toLowerCase().replace(/\s+/g, '-') : sanitizeForXML(String(post.metadata.tag)).toLowerCase().replace(/\s+/g, '-')}">${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(', ')) : sanitizeForXML(String(post.metadata.tag))}</category>` : ''}
       <category domain="${baseURL}/${post._rssType}">${post._rssType}</category>
-      <author>${person.email || 'aryan@aroice.in'}</author>
-      <dc:creator><![CDATA[${sanitizeForXML(person.name)}]]></dc:creator>
-      <source url="${baseURL}/api/rss">${sanitizeForXML(blog.title)}</source>
+      <author>${person.email || 'aryan@aroice.in'} (${person.name || 'Aryan Techie'})</author>
+      <source url="${selfUrl}">${sanitizeForXML(blog.title)}</source>
       ${post.metadata.team && post.metadata.team.length > 0 ? 
         post.metadata.team.map(member => `<dc:contributor><![CDATA[${sanitizeForXML(member.name)} (${sanitizeForXML(member.role)})]]></dc:contributor>`).join('\n      ') : ''}
     </item>`;
