@@ -65,8 +65,18 @@ export async function GET(request: Request) {
     ${sortedPosts
       .map(
         (post) => {
-          const fullImageUrl = post.metadata.image ? 
-            (post.metadata.image.startsWith('http') ? post.metadata.image : `${baseURL}${post.metadata.image}`) : 
+          // Handle both single image and images array for cover image
+          const getCoverImage = (metadata: any) => {
+            if (metadata.image) return metadata.image;
+            if (metadata.images && Array.isArray(metadata.images) && metadata.images.length > 0) {
+              return metadata.images[0];
+            }
+            return null;
+          };
+          
+          const coverImage = getCoverImage(post.metadata);
+          const fullImageUrl = coverImage ? 
+            (coverImage.startsWith('http') ? coverImage : `${baseURL}${coverImage}`) : 
             `${baseURL}/images/og/home-new.png`;
           
           // Properly sanitize content for XML
@@ -123,12 +133,12 @@ export async function GET(request: Request) {
       <pubDate>${new Date(post.metadata.publishedAt).toUTCString()}</pubDate>
       <description><![CDATA[${sanitizeForXML(post.metadata.summary)}]]></description>
       <content:encoded><![CDATA[
-        ${post.metadata.image ? `<img src="${fullImageUrl}" alt="${sanitizeForXML(post.metadata.title)}" />` : ''}
+        ${coverImage ? `<img src="${fullImageUrl}" alt="${sanitizeForXML(post.metadata.title)}" />` : ''}
         <p><strong>Summary:</strong> ${sanitizeForXML(post.metadata.summary)}</p>
         ${contentPreview ? `<div>${contentPreview}...</div>` : ''}
         <p><a href="${post._rssLink}">Read the full article →</a></p>
       ]]></content:encoded>
-      ${post.metadata.image ? `
+      ${coverImage ? `
       <enclosure url="${fullImageUrl}" type="image/jpeg" length="0"/>` : ''}
       ${post.metadata.tag && (Array.isArray(post.metadata.tag) ? post.metadata.tag.length > 0 : post.metadata.tag.trim() !== '') ? `<category domain="${baseURL}/blog/category/${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(',')).toLowerCase().replace(/\s+/g, '-') : sanitizeForXML(String(post.metadata.tag)).toLowerCase().replace(/\s+/g, '-')}">${Array.isArray(post.metadata.tag) ? sanitizeForXML(post.metadata.tag.join(', ')) : sanitizeForXML(String(post.metadata.tag))}</category>` : ''}
       <category domain="${baseURL}/${post._rssType}">${post._rssType}</category>
