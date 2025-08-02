@@ -78,10 +78,40 @@ export async function GET() {
               .replace(/'/g, '&#39;')
               .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, ''); // Remove control characters
           };
+
+          // Remove markdown formatting from content
+          const stripMarkdown = (text: string): string => {
+            if (!text) return '';
+            return text
+              // Remove headers (##, ###, etc.)
+              .replace(/^#{1,6}\s+/gm, '')
+              // Remove bold (**text** or __text__)
+              .replace(/\*\*(.*?)\*\*/g, '$1')
+              .replace(/__(.*?)__/g, '$1')
+              // Remove italic (*text* or _text_)
+              .replace(/\*(.*?)\*/g, '$1')
+              .replace(/_(.*?)_/g, '$1')
+              // Remove links [text](url)
+              .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+              // Remove inline code `code`
+              .replace(/`([^`]+)`/g, '$1')
+              // Remove code blocks ```
+              .replace(/```[\s\S]*?```/g, '')
+              // Remove blockquotes
+              .replace(/^>\s+/gm, '')
+              // Remove list markers
+              .replace(/^[-*+]\s+/gm, '')
+              .replace(/^\d+\.\s+/gm, '')
+              // Remove extra whitespace
+              .replace(/\n\s*\n/g, '\n')
+              .trim();
+          };
           
-          const contentPreview = post.content ? 
-            sanitizeForXML(post.content.replace(/^---[\s\S]*?---/, '').trim().substring(0, 500)) : 
-            sanitizeForXML(post.metadata.summary);
+          const rawContent = post.content ? 
+            post.content.replace(/^---[\s\S]*?---/, '').trim() : '';
+          
+          const cleanContent = rawContent ? stripMarkdown(rawContent).substring(0, 500) : '';
+          const contentPreview = sanitizeForXML(cleanContent);
             
           return `
     <item>
