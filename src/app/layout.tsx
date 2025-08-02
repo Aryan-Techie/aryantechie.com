@@ -3,6 +3,7 @@ import '@once-ui-system/core/css/tokens.css';
 import '@/resources/custom.css'
 
 import classNames from "classnames";
+import Script from 'next/script';
 
 import { Background, Column, Flex, Meta, opacity, SpacingToken } from "@once-ui-system/core";
 import { Footer, Header, RouteGuard, Providers } from '@/components';
@@ -100,6 +101,20 @@ export default async function RootLayout({
           title="The Insight Journal - Aryan Techie's Blog - AROICE"
           href="https://www.aryantechie.com/api/rss"
         />
+        
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-G854RXMKJL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-G854RXMKJL');
+          `}
+        </Script>
       </head>
       <Providers>
         <Column as="body" background="page" fillWidth style={{minHeight: "100vh"}} margin="0" padding="0" horizontal="center">
