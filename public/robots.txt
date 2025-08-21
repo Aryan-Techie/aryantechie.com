@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://aryantechie.com/sitemap.xml
+Sitemap: https://aryantechie.com/sitemap-images.xml
+
+# Optimize crawling
+Crawl-delay: 1
+
+# Allow access to image gallery
+Allow: /gallery
+Allow: /images/gallery/
+
+# Block development files
+Disallow: /_next/
+Disallow: /api/
+Disallow: /*.json$

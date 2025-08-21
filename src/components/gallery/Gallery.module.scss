@@ -12,3 +12,90 @@
 .gridItem {
     margin-bottom: var(--static-space-16);
 }
+
+.imageWrapper {
+    // Touch optimizations for gallery items
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    
+    // Better focus indicator for keyboard navigation
+    &:focus {
+        outline: 2px solid var(--neutral-600);
+        outline-offset: 2px;
+        border-radius: var(--radius-m-static);
+    }
+    
+    @media (max-width: 768px) {
+        // Ensure minimum touch target size on mobile
+        min-height: 44px;
+        
+        &:active {
+            opacity: 0.8;
+            transform: scale(0.98);
+            transition: all 0.1s ease;
+        }
+    }
+}
+
+.modal {
+    background: rgba(0, 0, 0, 0.95);
+    border: 1px solid var(--neutral-alpha-weak);
+    border-radius: var(--radius-m-static, 8px);
+    backdrop-filter: blur(20px);
+    
+    // Mobile touch optimizations
+    touch-action: none;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    
+    // Prevent mobile safari bouncing
+    position: fixed;
+    overflow: hidden;
+    
+    @media (max-width: 768px) {
+        padding: 0;
+        border-radius: 0;
+    }
+}
+
+.closeButton {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: 1px solid var(--neutral-alpha-weak);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    
+    // Touch optimizations
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    
+    &:hover {
+        background: rgba(239, 68, 68, 0.8);
+        border-color: rgba(239, 68, 68, 0.3);
+        transform: scale(1.1);
+    }
+    
+    &:active {
+        transform: scale(0.95);
+    }
+    
+    // Mobile specific styles
+    @media (max-width: 768px) {
+        &:hover {
+            // Disable hover on touch devices
+            background: rgba(0, 0, 0, 0.6);
+            border-color: var(--neutral-alpha-weak);
+            transform: none;
+        }
+        
+        &:active {
+            background: rgba(239, 68, 68, 0.8);
+            border-color: rgba(239, 68, 68, 0.3);
+            transform: scale(0.95);
+        }
+    }
+}

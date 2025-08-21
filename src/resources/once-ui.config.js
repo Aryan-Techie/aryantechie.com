@@ -8,8 +8,8 @@ const routes = {
   "/about": true,
   "/work": true,
   "/blog": true,
-  "/gallery": false,
-  "/frames": true,
+  "/gallery": true,
+  "/frames": false,
 };
 
 const display = {
