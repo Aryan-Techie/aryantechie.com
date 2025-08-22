@@ -42,7 +42,7 @@ interface LazyImageProps {
   onRetry: (image: GalleryImage) => void;
 }
 
-// Fisher-Yates shuffle algorithm
+// The Fisher-Yates shuffle algorithm | Mix up the photos so they show in different order each time - keeps things fresh!
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -52,7 +52,8 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-// Function to get image dimensions and calculate aspect ratio
+// Figure out how big each image is so we can display them properly
+// basically funtion to get image dimensions and calc. aspect ratio 
 function getImageDimensions(src: string): Promise<{ width: number; height: number }> {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -64,7 +65,7 @@ function getImageDimensions(src: string): Promise<{ width: number; height: numbe
   });
 }
 
-// Function to determine orientation and aspect ratio
+// Smart image classification - is it tall, wide, or square? to determine orientation
 function calculateAspectRatio(width: number, height: number) {
   const ratio = width / height;
   
@@ -78,12 +79,12 @@ function calculateAspectRatio(width: number, height: number) {
     orientation = 'portrait';
   }
 
-  // Calculate CSS aspect ratio
+  // Calculate CSS aspect ratio - use common ratios when possible for cleaner display
   let aspectRatio: string;
   if (orientation === 'square') {
     aspectRatio = '1 / 1';
   } else if (orientation === 'landscape') {
-    // Common landscape ratios
+    // Common landscape ratios - recognize the popular ones
     if (ratio >= 1.7 && ratio <= 1.8) {
       aspectRatio = '16 / 9';
     } else if (ratio >= 1.4 && ratio <= 1.5) {
@@ -94,7 +95,7 @@ function calculateAspectRatio(width: number, height: number) {
       aspectRatio = `${width} / ${height}`;
     }
   } else {
-    // Portrait ratios
+    // Portrait ratios - same deal but flipped
     if (ratio >= 0.55 && ratio <= 0.6) {
       aspectRatio = '9 / 16';
     } else if (ratio >= 0.65 && ratio <= 0.7) {
@@ -109,7 +110,7 @@ function calculateAspectRatio(width: number, height: number) {
   return { orientation, aspectRatio };
 }
 
-// Lazy Image Component
+// Lazy Image Component | Each image loads itself when you scroll to it - saves bandwidth and makes things snappy
 function LazyImage({ 
   image, 
   index, 
@@ -131,10 +132,10 @@ function LazyImage({
           if (!imageData && !error && !isLoading) {
             onLoadDimensions(image);
           }
-          observer.disconnect();
+          observer.disconnect(); // Job done, no need to keep watching
         }
       },
-      { threshold: 0.1, rootMargin: '100px' }
+      { threshold: 0.1, rootMargin: '100px' } // Start loading a bit before the image comes into view
     );
 
     if (imgRef.current) {
@@ -288,17 +289,17 @@ export default function MasonryGrid({
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   
-  // Lazy loading states
+  // Lazy loading states - keeping track of what's loading and what failed
   const [imageData, setImageData] = useState<Map<string, ImageWithDimensions>>(new Map());
   const [loadingImages, setLoadingImages] = useState<Set<string>>(new Set());
   const [errors, setErrors] = useState<Map<string, string>>(new Map());
   const [retryCount, setRetryCount] = useState<Map<string, number>>(new Map());
 
-  // Focus management
+  // Focus management - keep track of where focus was before opening modal
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
-  // Enhanced touch handling for mobile UX
+  // Enhanced touch handling for mobile UX - all the gestures and feedback
   const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
   const [touchEnd, setTouchEnd] = useState<{ x: number; y: number } | null>(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -332,7 +333,7 @@ export default function MasonryGrid({
         setShowMobileHint(true);
         localStorage.setItem('gallery-mobile-hint-seen', 'true');
         
-        // Auto-hide hint after 4 seconds
+        // Auto-hide hint after 4 seconds - don't want to annoy people
         setTimeout(() => {
           setShowMobileHint(false);
         }, 4000);
@@ -350,12 +351,12 @@ export default function MasonryGrid({
     400: 2,
   };
 
-  // Memoize shuffled images
+  // Memoize shuffled images - only shuffle when the images actually change
   const shuffledImages = useMemo(() => {
     return shuffleArray(images);
   }, [images]);
 
-  // Individual image dimension loader
+  // Individual image dimension loader - does the heavy lifting of measuring images
   const loadImageDimensions = useCallback(async (image: GalleryImage) => {
     if (imageData.has(image.src) || loadingImages.has(image.src)) return;
 
@@ -372,7 +373,7 @@ export default function MasonryGrid({
       };
 
       setImageData(prev => new Map(prev).set(image.src, processedImage));
-      // Clear any previous errors
+      // Clear any previous errors - fresh start!
       setErrors(prev => {
         const newErrors = new Map(prev);
         newErrors.delete(image.src);
@@ -387,7 +388,7 @@ export default function MasonryGrid({
       const currentRetries = retryCount.get(image.src) || 0;
       
       if (currentRetries < 3) {
-        // Retry up to 3 times with exponential backoff
+        // Retry up to 3 times with exponential backoff - sometimes networks are flaky
         setRetryCount(prev => new Map(prev).set(image.src, currentRetries + 1));
         setTimeout(() => loadImageDimensions(image), 1000 * Math.pow(2, currentRetries));
       } else {
@@ -395,7 +396,7 @@ export default function MasonryGrid({
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         setErrors(prev => new Map(prev).set(image.src, errorMessage));
         
-        // Still create fallback data for modal functionality
+        // Still create fallback data for modal functionality - don't let one bad image break everything
         const fallbackImage: ImageWithDimensions = {
           ...image,
           orientation: 'landscape' as const,
@@ -412,7 +413,7 @@ export default function MasonryGrid({
     }
   }, [imageData, loadingImages, retryCount]);
 
-  // Retry function
+  // Retry function - give failed images another chance
   const retryImage = useCallback((image: GalleryImage) => {
     setErrors(prev => {
       const newErrors = new Map(prev);
@@ -427,7 +428,7 @@ export default function MasonryGrid({
     loadImageDimensions(image);
   }, [loadImageDimensions]);
 
-  // Initialize loading state
+  // Initialize loading state - quick setup
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -437,7 +438,7 @@ export default function MasonryGrid({
     setSelectedImage(image);
     setSelectedIndex(index);
     
-    // Focus the modal after a short delay
+    // Focus the modal after a short delay - accessibility is important!
     setTimeout(() => {
       modalRef.current?.focus();
     }, 100);
@@ -445,7 +446,7 @@ export default function MasonryGrid({
 
   const closeModal = () => {
     setSelectedImage(null);
-    // Return focus to previously focused element
+    // Return focus to previously focused element - good UX practice
     previousFocusRef.current?.focus();
   };
 
@@ -467,7 +468,7 @@ export default function MasonryGrid({
     }
   };
 
-  // Enhanced touch handlers for swipe navigation and pull-to-close
+  // Enhanced touch handlers for swipe navigation and pull-to-close - mobile magic!
   const handleTouchStart = (e: React.TouchEvent) => {
     const touch = e.targetTouches[0];
     setTouchStart({ x: touch.clientX, y: touch.clientY });
@@ -485,7 +486,7 @@ export default function MasonryGrid({
     const deltaX = touch.clientX - touchStart.x;
     const deltaY = touch.clientY - touchStart.y;
     
-    // Only start dragging if movement is significant
+    // Only start dragging if movement is significant - avoid accidental drags
     if (!isDragging && (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10)) {
       setIsDragging(true);
     }
@@ -495,12 +496,12 @@ export default function MasonryGrid({
       if (deltaY > 0) {
         setDragOffset({ x: deltaX * 0.3, y: deltaY * 0.5 });
         
-        // Adjust modal scale and opacity based on drag distance
+        // Adjust modal scale and opacity based on drag distance - visual feedback is key
         const dragRatio = Math.min(deltaY / 200, 1);
         setModalScale(1 - dragRatio * 0.3);
         setModalOpacity(1 - dragRatio * 0.7);
       } else {
-        // Reset when dragging up
+        // Reset when dragging up - don't close when scrolling content
         setDragOffset({ x: deltaX * 0.3, y: 0 });
         setModalScale(1);
         setModalOpacity(1);
@@ -510,7 +511,7 @@ export default function MasonryGrid({
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) {
-      // Reset states
+      // Reset states - clean up after ourselves
       setIsDragging(false);
       setDragOffset({ x: 0, y: 0 });
       setModalScale(1);
@@ -541,7 +542,7 @@ export default function MasonryGrid({
       }
     }
     
-    // Reset drag states with animation
+    // Reset drag states with animation - smooth return to normal
     setIsDragging(false);
     setDragOffset({ x: 0, y: 0 });
     setModalScale(1);
@@ -554,7 +555,7 @@ export default function MasonryGrid({
     if (e.key === 'ArrowLeft') prevImage();
   };
 
-  // Add global key event listener
+  // Add global key event listener - keyboard navigation for power users
   useEffect(() => {
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
       if (selectedImage && e.key === 'Escape') {
@@ -630,7 +631,7 @@ export default function MasonryGrid({
         ))}
       </Masonry>
 
-      {/* Enhanced Modal/Lightbox */}
+      {/* Enhanced Modal/Lightbox - where the magic happens */}
       {selectedImage && (
         <div
           ref={modalRef}
@@ -662,7 +663,7 @@ export default function MasonryGrid({
             outline: 'none'
           }}
         >
-          {/* Background overlay with subtle pattern */}
+          {/* Background overlay with subtle pattern - adds some visual depth */}
           <div
             style={{
               position: 'absolute',
@@ -675,7 +676,7 @@ export default function MasonryGrid({
             }}
           />
 
-          {/* Image counter - Top Left - Mobile optimized */}
+          {/* Image counter - shows which photo you're looking at */}
           <div
             style={{
               position: 'absolute',
@@ -699,7 +700,7 @@ export default function MasonryGrid({
             {selectedIndex + 1} / {shuffledImages.length}
           </div>
 
-          {/* Mobile pull indicator - shows when dragging */}
+          {/* Mobile pull indicator - visual feedback when dragging to close */}
           {isDragging && dragOffset.y > 20 && (
             <div
               style={{
@@ -731,7 +732,7 @@ export default function MasonryGrid({
             </div>
           )}
 
-          {/* Mobile usage hint - shows on first visit */}
+          {/* Mobile usage hint - teach users about touch gestures on first visit */}
           {showMobileHint && (
             <div
               style={{
@@ -756,7 +757,7 @@ export default function MasonryGrid({
               }}
             >
               <div style={{ marginBottom: '8px', fontSize: '14px', fontWeight: '600' }}>
-                📱 Touch Tips
+                Touch Tips
               </div>
               <div style={{ lineHeight: '1.4', opacity: 0.9 }}>
                 Swipe left/right to navigate • Pull down to close
@@ -786,7 +787,7 @@ export default function MasonryGrid({
             </div>
           )}
 
-          {/* Swipe direction indicator for horizontal swipes */}
+          {/* Swipe direction indicator - shows which way you're swiping */}
           {isDragging && Math.abs(dragOffset.x) > 30 && Math.abs(dragOffset.x) > Math.abs(dragOffset.y) && (
             <div
               style={{
@@ -829,7 +830,7 @@ export default function MasonryGrid({
             </div>
           )}
 
-          {/* Enhanced close button - Touch-optimized (minimum 44px) */}
+          {/* Close button - big enough for easy tapping on mobile */}
           <button
             onClick={closeModal}
             className={styles.closeButton}
@@ -856,7 +857,7 @@ export default function MasonryGrid({
               background: 'rgba(0, 0, 0, 0.6)',
               color: 'white',
               backdropFilter: 'blur(10px)',
-              // Touch feedback
+              // Touch feedback - make it feel responsive
               userSelect: 'none',
               WebkitTapHighlightColor: 'transparent',
             }}
@@ -889,7 +890,7 @@ export default function MasonryGrid({
               userSelect: 'none',
             }}
           >
-            {/* Main image container - Mobile optimized */}
+            {/* Main image container - where the photo lives */}
             <div
               style={{
                 position: 'relative',
@@ -904,7 +905,7 @@ export default function MasonryGrid({
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                // Dynamic margin based on mobile/desktop
+                // Dynamic margin based on mobile/desktop - give more breathing room on larger screens
                 margin: isMobile ? '0 clamp(16px, 4vw, 32px)' : '0 clamp(60px, 15vw, 100px)',
               }}
             >
@@ -921,14 +922,14 @@ export default function MasonryGrid({
                   objectFit: 'contain',
                   borderRadius: 'clamp(6px, 1.5vw, 12px)',
                   display: 'block',
-                  // Prevent image selection on mobile
+                  // Prevent image selection on mobile - no accidental text selection
                   userSelect: 'none',
                   WebkitUserSelect: 'none',
                   pointerEvents: 'none',
                 }}
               />
               
-              {/* Image loading shimmer effect */}
+              {/* Subtle shimmer effect while image loads - just a nice touch */}
               <div
                 style={{
                   position: 'absolute',
@@ -945,7 +946,7 @@ export default function MasonryGrid({
               />
             </div>
             
-            {/* Enhanced image info - Mobile optimized */}
+            {/* Photo title and year - context for what you're looking at */}
             {(selectedImage.title || selectedImage.year) && (
               <div 
                 id="modal-description"
@@ -991,7 +992,7 @@ export default function MasonryGrid({
               </div>
             )}
 
-            {/* Enhanced navigation arrows - Hidden on mobile, visible on desktop */}
+            {/* Navigation arrows - only show on desktop since mobile uses swipes */}
             {!isMobile && (
               <>
                 <button
@@ -1020,7 +1021,7 @@ export default function MasonryGrid({
                     height: 'clamp(48px, 10vw, 64px)',
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
                     zIndex: 1001,
-                    // Touch optimization
+                    // Touch optimization - make sure buttons work well on mobile
                     userSelect: 'none',
                     WebkitTapHighlightColor: 'transparent',
                     touchAction: 'manipulation',
@@ -1065,7 +1066,7 @@ export default function MasonryGrid({
                     height: 'clamp(48px, 10vw, 64px)',
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
                     zIndex: 1001,
-                    // Touch optimization
+                    // Touch optimization - smooth interactions on all devices
                     userSelect: 'none',
                     WebkitTapHighlightColor: 'transparent',
                     touchAction: 'manipulation',
@@ -1087,7 +1088,7 @@ export default function MasonryGrid({
             )}
                         </div>
               
-                        {/* Animation styles */}
+                        {/* CSS animations for smooth transitions */}
                         <style jsx>{`
                           @keyframes fadeIn {
                             from { opacity: 0; }
