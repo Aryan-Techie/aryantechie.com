@@ -1,4 +1,4 @@
-import { Logo } from "@once-ui-system/core";
+import { Logo, Row, Line, Text } from "@once-ui-system/core";
 
 const person = {
   firstName: "Aryan",
@@ -78,11 +78,19 @@ const home = {
   headline: <>Crafting code and clarity.</>,
   featured: {
     display: true,
-    title: <>Recent project: <strong className="ml-4">Argon</strong></>,
+    title: (
+      <Row gap="12" vertical="center">
+        <strong className="ml-4">ARGON</strong>{" "}
+        <Line background="brand-alpha-strong" vert height="20" />
+        <Text marginRight="4" onBackground="brand-medium">
+          Featured work
+        </Text>
+      </Row>
+    ),
     href: "https://argon.aroice.in",
   },
   subline: (
-    <>I&rsquo;m Aryan, a CS student at IIT Patna and the creator of AROICE, where I build thoughtful tools, products,<br></br> and ideas that blend code and clarity.</>
+  <>I&rsquo;m Aryan, CS student at IIT Patna and creator of AROICE,<br></br> building tools that blend code and clarity.</>
   ),
 };
 
