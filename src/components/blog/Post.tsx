@@ -1,16 +1,19 @@
 "use client";
 
-import { Column, Flex, Heading, Media, SmartLink, Tag, Text } from '@once-ui-system/core';
+import { Column, Flex, Heading, Media, SmartLink, Tag, Text, Row } from '@once-ui-system/core';
 import styles from './Posts.module.scss';
 import { formatDate } from '@/utils/formatDate';
+import { PostNumber } from './PostNumber';
+import { postNumbering } from '@/resources';
 
 interface PostProps {
     post: any;
     thumbnail: boolean;
     direction?: "row" | "column";
+    postNumber?: number;
 }
 
-export default function Post({ post, thumbnail, direction }: PostProps) {
+export default function Post({ post, thumbnail, direction, postNumber }: PostProps) {
     return (
         <SmartLink
             fillWidth
@@ -26,6 +29,13 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
                 className={styles.hover}
                 mobileDirection="column"
                 fillWidth>
+                {postNumber && postNumbering.enabled && (
+                    <PostNumber 
+                        number={postNumber}
+                        style={postNumbering.style as 'badge' | 'minimal' | 'outline'}
+                        position={postNumbering.position as 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'}
+                    />
+                )}
                 {post.metadata.image && thumbnail && (
                     <Media
                         priority

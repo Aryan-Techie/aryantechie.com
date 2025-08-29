@@ -189,4 +189,28 @@ const sameAs = {
   github: "https://github.com/aryan-techie",
 };
 
-export { display, mailchimp, routes, protectedRoutes, baseURL, fonts, style, schema, sameAs, effects, dataStyle };
+// social sharing configuration for blog posts
+const socialSharing = {
+  enabled: true,
+  platforms: {
+    x: true,
+    linkedin: true,
+    facebook: false,
+    pinterest: false,
+    whatsapp: true,
+    reddit: true,
+    telegram: false,
+    email: false,
+    copyLink: true,
+  },
+};
+
+// post numbering configuration
+const postNumbering = {
+  enabled: true,
+  style: 'minimal', // 'badge', 'minimal', 'outline'
+  position: 'top-left', // 'top-left', 'top-right', 'bottom-left', 'bottom-right'
+  reverse: true, // true = oldest post is #1, false = newest post is #1
+};
+
+export { display, mailchimp, routes, protectedRoutes, baseURL, fonts, style, schema, sameAs, socialSharing, postNumbering, effects, dataStyle };

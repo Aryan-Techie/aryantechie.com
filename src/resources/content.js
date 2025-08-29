@@ -241,7 +241,7 @@ const blog = {
   path: "/blog",
   label: "Blog",
   title: "The Insight Journal",
-  subtitle: "Writing about code and clarity...",
+  subtitle: "Writing about Code & Clarity",
   description: `Writing about code and clarity... | Read what ${person.name} has been up to recently`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
@@ -251,7 +251,7 @@ const work = {
   path: "/work",
   label: "Work",
   title: `Projects & Case Studies`,
-  subtitle: "Projects built with purpose, explained with clarity...",
+  subtitle: "Built with purpose, Explained with clarity",
   description: `Code and Creative projects by ${person.name}`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
@@ -261,7 +261,7 @@ const gallery = {
   path: "/gallery",
   label: "Gallery",
   title: "Visual Stories",
-  subtitle: "Capturing moments and memories...",
+  subtitle: "Capturing Moments & Memories",
   description: `Photo gallery showcasing Aryan Techie's journey as a Computer Science student at IIT Patna, indie creator, and developer. Visual stories from campus life, coding sessions, travel, and creative projects. | See what ${person.name} has been capturing recently...`,
   images: [
     {
