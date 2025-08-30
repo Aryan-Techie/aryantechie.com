@@ -160,9 +160,9 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
 
           <Column fillWidth gap="40" horizontal="center" marginTop="40">
             <Line maxWidth="40" />
-            <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
+            <Text variant="heading-strong-xl" as="div" marginBottom="24">
               You might also like
-            </Heading>
+            </Text>
             <Grid columns="2" mobileColumns="1" fillWidth gap="12">
               {randomPosts.map((randomPost) => (
                 <Post
@@ -170,14 +170,15 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
                   post={randomPost}
                   thumbnail
                   direction="column"
+                  hideFromNav={true}
                 />
               ))}
             </Grid>
             
             <Line maxWidth="40" />
-            <Heading as="h2" variant="heading-strong-xl" marginBottom="24">
+            <Text variant="heading-strong-xl" as="div" marginBottom="24">
               Recent posts
-            </Heading>
+            </Text>
             <Grid columns="2" mobileColumns="1" fillWidth gap="12">
               {recentPosts.map((recentPost) => (
                 <Post
@@ -185,6 +186,7 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
                   post={recentPost}
                   thumbnail
                   direction="column"
+                  hideFromNav={true}
                 />
               ))}
             </Grid>

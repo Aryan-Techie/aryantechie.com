@@ -11,9 +11,10 @@ interface PostProps {
     thumbnail: boolean;
     direction?: "row" | "column";
     postNumber?: number;
+    hideFromNav?: boolean;
 }
 
-export default function Post({ post, thumbnail, direction, postNumber }: PostProps) {
+export default function Post({ post, thumbnail, direction, postNumber, hideFromNav = false }: PostProps) {
     return (
         <SmartLink
             fillWidth
@@ -54,12 +55,21 @@ export default function Post({ post, thumbnail, direction, postNumber }: PostPro
                     fillWidth gap="4"
                     padding="24"
                     vertical="center">
-                    <Heading
-                        as="h2"
-                        variant="heading-strong-l"
-                        wrap="balance">
-                        {post.metadata.title}
-                    </Heading>
+                    {hideFromNav ? (
+                        <Text
+                            variant="heading-strong-l"
+                            as="div"
+                            wrap="balance">
+                            {post.metadata.title}
+                        </Text>
+                    ) : (
+                        <Heading
+                            as="h2"
+                            variant="heading-strong-l"
+                            wrap="balance">
+                            {post.metadata.title}
+                        </Heading>
+                    )}
                     <Text
                         variant="label-default-s"
                         onBackground="neutral-weak">
