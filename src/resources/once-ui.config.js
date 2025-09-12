@@ -191,7 +191,7 @@ const sameAs = {
 
 // social sharing configuration for blog posts
 const socialSharing = {
-  enabled: true,
+  display: true,
   platforms: {
     x: true,
     linkedin: true,
