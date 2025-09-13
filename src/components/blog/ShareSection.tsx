@@ -1,6 +1,6 @@
 "use client";
 
-import { Row, Text, Button, useToast, SmartLink, Icon } from "@once-ui-system/core";
+import { Row, Text, Button, useToast, SmartLink, Icon, Column } from "@once-ui-system/core";
 import { socialSharing } from "@/resources";
 
 interface ShareSectionProps {
@@ -139,28 +139,31 @@ export function ShareSection({ title, url }: ShareSectionProps) {
     .filter(platform => platform.name); // Filter out platforms that don't exist in our definitions
 
   return (
-    <Row fillWidth center gap="16" marginTop="32" marginBottom="16">
-      <Text variant="label-default-m" onBackground="neutral-weak">
+    <Column fillWidth gap="16" marginTop="32" marginBottom="16" paddingX="s">
+      <Text variant="label-default-m" onBackground="neutral-weak" style={{ textAlign: 'center' }}>
         Share this post:
       </Text>
-      {enabledPlatforms.map((platform) => (
-        <SmartLink
-          key={platform.key}
-          href={platform.generateUrl(title, url)}
-          target="_blank"
-        >
-          <Button variant="secondary" size="s" label={platform.label} onClick={() => platform.generateUrl(title, url)} prefixIcon={platform.icon} />
-        </SmartLink>
-      ))}
+      <Row fillWidth center gap="8" wrap className="share-section-buttons">
+        {enabledPlatforms.map((platform) => (
+          <SmartLink
+            key={platform.key}
+            href={platform.generateUrl(title, url)}
+            target="_blank"
+          >
+            <Button variant="secondary" size="s" label={platform.label} onClick={() => platform.generateUrl(title, url)} prefixIcon={platform.icon} />
+          </SmartLink>
+        ))}
 
-      {socialSharing.platforms.copyLink && (
-        <Button
-          variant="secondary"
-          size="s"
-          onClick={handleCopy}
-          prefixIcon="openLink"
-        />
-      )}
-    </Row>
+        {socialSharing.platforms.copyLink && (
+          <Button
+            variant="secondary"
+            size="s"
+            onClick={handleCopy}
+            prefixIcon="openLink"
+            label="Copy Link"
+          />
+        )}
+      </Row>
+    </Column>
   );
 }
