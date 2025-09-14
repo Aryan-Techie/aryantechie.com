@@ -6,7 +6,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Indie Creator & Product Developer",
+  role: "CS Student @ IIT-P & Indie Creator",
   avatar: "/images/avatar.jpg",
   email: "aryan@aroice.in",
   timezone: "Asia/Kolkata",
@@ -90,7 +90,7 @@ const home = {
     href: "https://argon.aroice.in",
   },
   subline: (
-  <>I&rsquo;m Aryan, CS student at IIT Patna and creator of AROICE,<br></br> building tools that blend code and clarity.</>
+  <>I&rsquo;m Aryan, CS student at IIT Patna creating tools to quiet the noise, clear the mind,<br></br> and live with intent.</>
   ),
 };
 
@@ -115,7 +115,7 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Aryan is a developer, writer, and indie creator from Haryana, currently studying Computer Science at IIT Patna. Through his brand AROICE, he builds thoughtful digital products and shares ideas on systems thinking, clarity, and creativity. His work includes Chrome extensions, minimal & creative websites, and personal tools built to simplify how we think, work, and create.
+        Aryan is a Computer Science student at IIT Patna who crafts tools and distills ideas to quiet the noise, clear the mind, and live with intent. Through his brand AROICE, he builds thoughtful digital products including Chrome extensions, websites, and personal tools. His work spans from productivity tools like ARGON to philosophical projects like Ashes, all designed to help people think clearly and live intentionally.
       </>
     ),
   },
@@ -191,46 +191,142 @@ const about = {
     title: "Technical skills",
     skills: [
       {
-        title: "JavaScript & TypeScript",
-        description: <>Love building full-stack projects and tools using modern JS/TS.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          // {
-          //   src: "",
-          //   alt: "Project image",
-          //   width: 16,
-          //   height: 9,
-          // },
-          // {
-          //   src: "",
-          //   alt: "Project image",
-          //   width: 16,
-          //   height: 9,
-          // },
-        ],
-      },
-      {
         title: "Chrome Extension Development",
-        description: <>Built extensions like <strong>ARGON</strong> and <strong>Ashes</strong>, focused on productivity, intentionality, and making everyday life better. Designing digital tools that simplify attention and strengthen intent.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          // {
-          //   src: "",
-          //   alt: "Project image",
-          //   width: 16,
-          //   height: 9,
-          // },
+        description: (
+          <>Built production extensions <strong>ARGON</strong> (focus & analytics) and <strong>Ashes</strong> (memento mori) with 1000+ users. Full manifest V3, storage APIs, content scripts.</>
+        ),
+        tags: [
+          {
+            name: "JavaScript",
+            icon: "javascript",
+          },
         ],
-      },
-      {
-        title: "Video Editing (Premiere Pro)",
-        description: <>Written, shot, and edited dozens of thoughtful talking head and cinematic videos on <strong>YouTube</strong>, exploring topics like focus, books, self-awareness, and modern life. Combining clarity, pacing, and visuals to make ideas stick.</>,
         images: [],
-        
       },
       {
-        title: "AI-Augmented Workflows",
-        description: <>Integrate tools like ChatGPT, Claude, and Grok to streamline thinking, accelerate creation, and build systems that scale with intention.</>,
+        title: "Full-Stack Web Development",
+        description: (
+          <>React frontends, Node.js backends, 11ty static sites. Built this portfolio, AROICE website, and multiple production apps.</>
+        ),
+        tags: [
+          {
+            name: "React",
+            icon: "react",
+          },
+          {
+            name: "Node.js",
+            icon: "nodejs",
+          },
+          {
+            name: "Next.js",
+            icon: "nextjs",
+          },
+          {
+            name: "HTML5",
+            icon: "html5",
+          },
+          {
+            name: "CSS3",
+            icon: "css3",
+          },
+        ],
+        images: [],
+      },
+      {
+        title: "Content Creation & Video Production",
+        description: (
+          <>YouTube channel with scripted, shot, and edited videos. Premiere Pro workflows, Audacity audio editing, storytelling for tech content.</>
+        ),
+        tags: [
+          {
+            name: "YouTube",
+            icon: "youtubetech",
+          },
+          {
+            name: "Premiere Pro",
+            icon: "premierepro",
+          },
+        ],
+        images: [],
+      },
+      {
+        title: "Automation & Scripting",
+        description: (
+          <>Python scripts, Bash automation, AutoHotkey for Windows productivity shortcuts, creative workflow systems. Real productivity gains through custom tooling.</>
+        ),
+        tags: [
+          {
+            name: "Python",
+            icon: "python",
+          },
+          {
+            name: "AutoHotkey",
+            icon: "autohotkey",
+          },
+        ],
+        images: [],
+      },
+      {
+        title: "Systems & Development Environment",
+        description: (
+          <>Fedora Linux + GNOME, Git/GitHub mastery, terminal-first workflows. Personal knowledge systems with Obsidian.</>
+        ),
+        tags: [
+          {
+            name: "Linux",
+            icon: "linux",
+          },
+          {
+            name: "GitHub",
+            icon: "github",
+          },
+          {
+            name: "Obsidian",
+            icon: "obsidian",
+          },
+        ],
+        images: [],
+      },
+      {
+        title: "UI/UX & Design",
+        description: (
+          <>Chrome extension interfaces, website/blog UI design, user experience for productivity tools. Figma prototyping.</>
+        ),
+        tags: [
+          {
+            name: "Figma",
+            icon: "figma",
+          },
+        ],
+        images: [],
+      },
+      {
+        title: "Additional Technologies",
+        description: (
+          <>TypeScript in Next.js projects, Firebase for backend services, Tailwind CSS styling, Git version control, Vercel deployments, SQL queries for basic data analytics.</>
+        ),
+        tags: [
+          {
+            name: "TypeScript",
+            icon: "typescript",
+          },
+          {
+            name: "Firebase",
+            icon: "firebase",
+          },
+          {
+            name: "Tailwind CSS",
+            icon: "tailwindcss",
+          },
+          {
+            name: "Git",
+            icon: "git",
+          },
+          {
+            name: "Vercel",
+            icon: "vercel",
+          },
+        ],
         images: [],
       },
     ],
