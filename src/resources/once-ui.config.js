@@ -87,7 +87,6 @@ const dataStyle = {
   },
 };
 
-
 const effects = {
   mask: {
     cursor: false,
