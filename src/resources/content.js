@@ -80,14 +80,14 @@ const home = {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">ARGON</strong>{" "}
+        <strong className="ml-4">ASHES</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
       </Row>
     ),
-    href: "https://argon.aroice.in",
+    href: "https://ashes.aroice.in",
   },
   subline: (
   <>I&rsquo;m Aryan, CS student at IIT Patna creating tools to quiet the noise, clear the mind,<br></br> and live with intent.</>
