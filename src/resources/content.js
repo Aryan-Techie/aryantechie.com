@@ -284,6 +284,10 @@ const about = {
             name: "Obsidian",
             icon: "obsidian",
           },
+          {
+            name: "Notion",
+            icon: "notion",
+          },
         ],
         images: [],
       },
