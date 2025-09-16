@@ -126,7 +126,29 @@ export default async function Blog({ params }: { params: Promise<{ slug: string 
                 {Math.ceil(post.content.split(' ').length / 200)} min read
               </Text>
             </Row>
-            <Heading variant="display-strong-m">{post.metadata.title}</Heading>
+            <Heading variant="display-strong-m" marginBottom={post.metadata.subtitle ? "8" : "0"}>
+              {post.metadata.title}
+            </Heading>
+            {post.metadata.subtitle && (
+              <Column gap="12" horizontal="center" marginBottom="16">
+                <Text 
+                  variant="body-default-m" 
+                  onBackground="neutral-medium" 
+                  align="center"
+                  wrap="balance"
+                  style={{ 
+                    fontStyle: 'italic',
+                    fontWeight: 300,
+                    letterSpacing: '0.01em',
+                    lineHeight: 1.5,
+                    maxWidth: '85%'
+                  }}
+                >
+                  {post.metadata.subtitle}
+                </Text>
+                <Line maxWidth={6} onBackground="brand-medium" />
+              </Column>
+            )}
           </Column>
           <Row marginBottom="32" horizontal="center">
             <Row gap="16" vertical="center">
