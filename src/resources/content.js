@@ -74,7 +74,7 @@ const home = {
   image: "/images/og/home.jpg",
   label: "Home",
   title: `${person.name}`,
-  description: `Portfolio website showcasing my work as a ${person.role}`,
+  description: `${person.name} is a ${person.role} who crafts digital experiences with code and clarity. Explore his portfolio featuring innovative web extensions, creative projects, and insights on technology and life.`,
   headline: <>Crafting code and clarity.</>,
   featured: {
     display: true,
@@ -98,7 +98,7 @@ const about = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.timezoneLabel}`,
+  description: `Meet ${person.name}, a ${person.role} from ${person.timezoneLabel}. Discover his journey through computer science at IIT Patna, indie development projects, and passion for creating meaningful digital experiences.`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -342,7 +342,7 @@ const blog = {
   label: "Blog",
   title: "The Insight Journal",
   subtitle: "Writing about Code & Clarity",
-  description: `Writing about code and clarity... | Read what ${person.name} has been up to recently`,
+  description: `The Insight Journal by ${person.name} - Thoughtful writing about technology, personal growth, philosophy, and the intersection of code and clarity. Discover insights on building digital products, life as a CS student, and finding meaning in the modern world.`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
 };
@@ -352,7 +352,7 @@ const work = {
   label: "Work",
   title: `Projects & Case Studies`,
   subtitle: "Built with purpose, Explained with clarity",
-  description: `Code and Creative projects by ${person.name}`,
+  description: `Explore ${person.name}'s portfolio of innovative projects including browser extensions like Argon and Ashes, digital wellness tools, and creative coding experiments. Each project features detailed case studies and insights into the development process.`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
 };
