@@ -102,6 +102,13 @@ export default async function RootLayout({
           href="https://www.aryantechie.com/api/rss"
         />
         
+        {/* Essential PWA Meta Tags */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#0891b2" />
+        <link rel="apple-touch-icon" href="/images/icons/icon-192.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/images/icons/icon-192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/images/icons/icon-512.png" />
+        
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-G854RXMKJL"
