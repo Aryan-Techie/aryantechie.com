@@ -4,6 +4,7 @@ import '@/resources/custom.css'
 
 import classNames from "classnames";
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
 
 import { Background, Column, Flex, Meta, opacity, SpacingToken } from "@once-ui-system/core";
 import { Footer, Header, RouteGuard, Providers } from '@/components';
@@ -184,6 +185,7 @@ export default async function RootLayout({
             <Footer/>
           </Column>
         </Providers>
+        <Analytics />
       </Flex>
   );
 }
