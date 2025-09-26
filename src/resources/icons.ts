@@ -1,3 +1,4 @@
+import React from "react";
 import { IconType } from "react-icons";
 
 import {
@@ -48,6 +49,43 @@ import {
 } from "react-icons/si";
 
 import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaTwitter, FaInstagram, FaGlobe, FaProductHunt, FaYoutube, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram } from "react-icons/fa6";
+
+// Custom Once UI Icon component with theme support
+const OnceUIIcon: IconType = () => {
+  const [theme, setTheme] = React.useState('dark');
+  
+  React.useEffect(() => {
+    // Get initial theme
+    const getTheme = () => {
+      const dataTheme = document.documentElement.getAttribute('data-theme');
+      return dataTheme || 'dark';
+    };
+    
+    setTheme(getTheme());
+    
+    // Watch for theme changes
+    const observer = new MutationObserver(() => {
+      setTheme(getTheme());
+    });
+    
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+    
+    return () => observer.disconnect();
+  }, []);
+  
+  const iconSrc = theme === 'light' 
+    ? "https://docs.once-ui.com/trademark/icon-light.svg"
+    : "https://docs.once-ui.com/trademark/icon-dark.svg";
+    
+  return React.createElement('img', {
+    src: iconSrc,
+    alt: "Once UI",
+    style: { width: '1em', height: '1em', display: 'inline-block' }
+  });
+};
 
 export const iconLibrary: Record<string, IconType> = {
   arrowUpRight: HiArrowUpRight,
@@ -103,6 +141,7 @@ export const iconLibrary: Record<string, IconType> = {
   whatsapp: FaWhatsapp,
   reddit: FaReddit,
   telegram: FaTelegram,
+  onceui: OnceUIIcon,
 };
 
 export type IconLibrary = typeof iconLibrary;

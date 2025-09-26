@@ -294,12 +294,16 @@ const about = {
       {
         title: "UI/UX & Design",
         description: (
-          <>Chrome extension interfaces, website/blog UI design, user experience for productivity tools. Figma prototyping.</>
+          <>Chrome extension interfaces, website/blog UI design, user experience for productivity tools. Figma prototyping, Once UI design systems.</>
         ),
         tags: [
           {
             name: "Figma",
             icon: "figma",
+          },
+          {
+            name: "Once UI",
+            icon: "onceui",
           },
         ],
         images: [],
