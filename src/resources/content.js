@@ -193,7 +193,7 @@ const about = {
       {
         title: "Chrome Extension Development",
         description: (
-          <>Built production extensions <strong>ARGON</strong> (focus & analytics) and <strong>Ashes</strong> (memento mori) with 1000+ users. Full manifest V3, storage APIs, content scripts.</>
+          <>Built production extensions <strong>ARGON</strong> (focus & analytics) and <strong>Ashes</strong> (memento mori). Full manifest V3, storage APIs, content scripts.</>
         ),
         tags: [
           {
@@ -311,7 +311,7 @@ const about = {
       {
         title: "Additional Technologies",
         description: (
-          <>TypeScript in Next.js projects, Firebase for backend services, Tailwind CSS styling, Git version control, Vercel deployments, SQL queries for basic data analytics.</>
+          <>TypeScript in Next.js projects, Firebase for backend services, Tailwind CSS styling, Git version control, Vercel deployments, GNOME desktop environment, SQL queries for basic data analytics.</>
         ),
         tags: [
           {
@@ -323,16 +323,16 @@ const about = {
             icon: "firebase",
           },
           {
-            name: "Tailwind CSS",
-            icon: "tailwindcss",
-          },
-          {
             name: "Git",
             icon: "git",
           },
           {
             name: "Vercel",
             icon: "vercel",
+          },
+          {
+            name: "GNOME",
+            icon: "linux",
           },
         ],
         images: [],
