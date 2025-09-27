@@ -21,6 +21,7 @@ import {
   Icon,
   Media,
   SmartLink,
+  BlockQuote,
 } from "@once-ui-system/core";
 
 type CustomLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -179,6 +180,7 @@ const components = {
   Icon,
   Media,
   SmartLink,
+  BlockQuote,
 };
 
 type CustomMDXProps = MDXRemoteProps & {
