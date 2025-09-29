@@ -189,7 +189,7 @@ const sameAs = {
   github: "https://github.com/aryan-techie",
 };
 
-// social sharing configuration for blog posts
+// social sharing configuration for blog & work posts
 const socialSharing = {
   display: true,
   platforms: {

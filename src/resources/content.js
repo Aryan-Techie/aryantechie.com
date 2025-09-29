@@ -52,11 +52,11 @@ const social = [
     icon: "linkedin",
     link: "https://ie.linkedin.com/in/aryantechie",
   },
-  {
-    name: "ProductHunt",
-    icon: "producthunt",
-    link: "https://www.producthunt.com/@aryantechie",
-  },
+  // {
+  //   name: "ProductHunt",
+  //   icon: "producthunt",
+  //   link: "https://www.producthunt.com/@aryantechie",
+  // },
   {
     name: "X (Twitter)",
     icon: "twitter",
