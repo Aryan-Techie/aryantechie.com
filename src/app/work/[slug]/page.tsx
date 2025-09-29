@@ -4,6 +4,7 @@ import { Meta, Schema, AvatarGroup, Button, Column, Flex, Heading, Media, Text }
 import { baseURL, about, person, work } from "@/resources";
 import { formatDate } from "@/utils/formatDate";
 import { ScrollToHash, CustomMDX } from "@/components";
+import { ShareSection } from "@/components/blog/ShareSection";
 import { Metadata } from "next";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -92,6 +93,11 @@ export default async function Project({
           </Text>
         </Flex>
         <CustomMDX source={post.content} />
+        
+        <ShareSection 
+          title={post.metadata.title} 
+          url={`${baseURL}${work.path}/${post.slug}`} 
+        />
       </Column>
       <ScrollToHash />
     </Column>
