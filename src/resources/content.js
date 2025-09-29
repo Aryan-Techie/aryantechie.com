@@ -339,6 +339,134 @@ const about = {
       },
     ],
   },
+  opensource: {
+    display: true, // set to false to hide this section
+    title: "Open Source Contributions",
+    projects: [
+      {
+        name: "Weekly Commits",
+        url: "https://github.com/funinkina/weekly-commits",
+        timeframe: "September 2025",
+        role: "Core Contributor & UI/UX Designer",
+        achievements: [
+          <>
+            Built comprehensive <strong>theme system with 14 color themes</strong> and flexible coloring modes for enhanced commit visualization.
+          </>,
+          <>
+            <strong>Redesigned project logo and visual identity</strong> - created new branding that captures the essence of weekly coding activity.
+          </>,
+          <>
+            Implemented <strong>instant save functionality</strong> for all settings, removing manual save buttons and improving UX.
+          </>,
+          <>
+            Enhanced documentation with comprehensive README rewrite and installation guides. <strong>4+ merged PRs</strong>.
+          </>,
+        ],
+        images: [
+          {
+            src: "/images/projects/weekly-commits/weekly-commits-hero.jpg",
+            alt: "Weekly Commits GNOME Extension - Open Source Contribution by Aryan Techie",
+            width: 16,
+            height: 9,
+          },
+          {
+            src: "/images/projects/weekly-commits/weeky-commits-logo-design.jpg",
+            alt: "Weekly Commits GNOME Extension - Brand New Logo by Aryan Techie",
+            width: 16,
+            height: 9,
+          },
+        ],
+      },
+      {
+        name: "Magic Portfolio",
+        url: "https://github.com/once-ui-system/magic-portfolio",
+        timeframe: "September 2025",
+        role: "Feature Developer",
+        achievements: [
+          <>
+            Built <strong>configurable social sharing system</strong> for blog posts across 9 platforms (Twitter, LinkedIn, Reddit, etc.).
+          </>,
+          <>
+            Enhanced content sharing capabilities and improved user engagement features for the portfolio framework.
+          </>,
+        ],
+        images: [
+          {
+            src: "/images/projects/work/magic-portfolio.jpg",
+            alt: "Magic Portfolio - Dopler - Open Source Contribution by Aryan Techie",
+            width: 16,
+            height: 9,
+          },
+          {
+            src: "/images/projects/work/magic-portfolio-social.jpg",
+            alt: "Social Sharing buttons - Magic Portfolio Blog - Dopler - Open Source Contribution by Aryan Techie",
+            width: 16,
+            height: 9,
+          },
+
+        ],      },
+      {
+        name: "Quartz Static Site Generator",
+        url: "https://github.com/jackyzha0/quartz",
+        timeframe: "April 2025",
+        role: "Developer",
+        achievements: [
+          <>
+            Improved <strong>quartz sync to support any Git branch</strong> - expanded deployment options for content creators.
+          </>,
+          <>
+            Enhanced workflow flexibility for static site generation and publishing.
+          </>,
+        ],
+        images: [{
+            src: "/images/projects/work/quartz.jpg",
+            alt: "Quartz - Static Site Generator - Open Source Contribution by Aryan Techie",
+            width: 16,
+            height: 9,
+          },],
+      },
+      {
+        name: "libfprint-CS9711",
+        url: "https://github.com/ddlsmurf/libfprint-CS9711",
+        timeframe: "August 2025",
+        role: "Documentation Contributor",
+        achievements: [
+          <>
+            Authored <strong>comprehensive Fedora installation guide</strong> for Chipsailing CS9711 fingerprint reader.
+          </>,
+          <>
+            Fixed GNOME PAM integration issues and solved hardware compatibility problems for Linux users.
+          </>,
+        ],
+        images: [{
+            src: "/images/projects/work/libfprint.jpg",
+            alt: "Libfprint Module Fix - Open Source Contribution by Aryan Techie",
+            width: 16,
+            height: 9,
+          },],
+      },
+      {
+        name: "Howdy (Facial Recognition)",
+        url: "https://github.com/freedy237/howdy-fedora-install",
+        timeframe: "June 2025",
+        role: "Security Fix Contributor",
+        achievements: [
+          <>
+            Fixed <strong>SELinux GDM login block on Fedora 42</strong> by creating custom xdm_t policy module.
+          </>,
+          <>
+            Enabled seamless facial recognition at login and resolved critical security policy conflicts.
+          </>,
+        ],
+        images: [{
+            src: "/images/projects/work/howdy.jpg",
+            alt: "Howdy - Facial Recognition Fix - Open Source Contribution by Aryan Techie",
+            width: 16,
+            height: 9,
+          },],
+      },
+    ],
+  },
 };
 
 const blog = {

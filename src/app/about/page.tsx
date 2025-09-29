@@ -6,6 +6,7 @@ import {
   Heading,
   Icon,
   IconButton,
+  Line,
   Media,
   Row,
   Tag,
@@ -50,6 +51,11 @@ export default function About() {
       title: about.technical.title,
       display: about.technical.display,
       items: about.technical.skills.map((skill) => skill.title),
+    },
+    {
+      title: about.opensource.title,
+      display: about.opensource.display,
+      items: about.opensource.projects.map((project) => project.name),
     },
   ];
   return (
@@ -187,6 +193,10 @@ export default function About() {
             </Column>
           )}
 
+          {about.intro.display && about.work.display && (
+            <Line background="neutral-alpha-weak" marginY="40" />
+          )}
+
           {about.work.display && (
             <>
               <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
@@ -249,6 +259,10 @@ export default function About() {
             </>
           )}
 
+          {about.work.display && about.studies.display && (
+            <Line background="neutral-alpha-weak" marginY="40" />
+          )}
+
           {about.studies.display && (
             <>
               <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
@@ -267,6 +281,10 @@ export default function About() {
                 ))}
               </Column>
             </>
+          )}
+
+          {about.studies.display && about.technical.display && (
+            <Line background="neutral-alpha-weak" marginY="40" />
           )}
 
           {about.technical.display && (
@@ -300,6 +318,79 @@ export default function About() {
                         {skill.images.map((image, index) => (
                           <Flex
                             key={index}
+                            border="neutral-medium"
+                            radius="m"
+                            //@ts-ignore
+                            minWidth={image.width}
+                            //@ts-ignore
+                            height={image.height}
+                          >
+                            <Media
+                              enlarge
+                              radius="m"
+                              //@ts-ignore
+                              sizes={image.width.toString()}
+                              //@ts-ignore
+                              alt={image.alt}
+                              //@ts-ignore
+                              src={image.src}
+                            />
+                          </Flex>
+                        ))}
+                      </Flex>
+                    )}
+                  </Column>
+                ))}
+              </Column>
+            </>
+          )}
+
+          {about.technical.display && about.opensource.display && (
+            <Line background="neutral-alpha-weak" marginY="40" />
+          )}
+
+          {about.opensource.display && (
+            <>
+              <Heading
+                as="h2"
+                id={about.opensource.title}
+                variant="display-strong-s"
+                marginTop="40"
+                marginBottom="m"
+              >
+                {about.opensource.title}
+              </Heading>
+              <Column fillWidth gap="l" marginBottom="40">
+                {about.opensource.projects.map((project, index) => (
+                  <Column key={`${project.name}-${index}`} fillWidth gap="4">
+                    <Text id={project.name} variant="heading-strong-l">
+                      {project.url ? (
+                        <a href={project.url} target="_blank" rel="noopener noreferrer">
+                          {project.name}
+                        </a>
+                      ) : (
+                        project.name
+                      )}
+                    </Text>
+                    <Text variant="body-default-s" onBackground="neutral-weak" marginBottom="8">
+                      {project.timeframe} • {project.role}
+                    </Text>
+                    <Column fillWidth gap="8">
+                      {project.achievements.map((achievement, achievementIndex) => (
+                        <Text
+                          key={achievementIndex}
+                          variant="body-default-m"
+                          onBackground="neutral-medium"
+                        >
+                          • {achievement}
+                        </Text>
+                      ))}
+                    </Column>
+                    {project.images && project.images.length > 0 && (
+                      <Flex fillWidth paddingTop="m" gap="12" wrap>
+                        {project.images.map((image, imgIndex) => (
+                          <Flex
+                            key={imgIndex}
                             border="neutral-medium"
                             radius="m"
                             //@ts-ignore

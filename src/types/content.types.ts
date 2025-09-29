@@ -105,6 +105,29 @@ export interface About extends BasePageConfig {
       }>;
     }>;
   };
+  opensource: {
+    display: boolean;
+    title: string;
+    projects: Array<{
+      /** Project name */
+      name: string;
+      /** Project URL */
+      url?: string;
+      /** Contribution timeframe */
+      timeframe: string;
+      /** Contributor role */
+      role: string;
+      /** Project achievements */
+      achievements: React.ReactNode[];
+      /** Project images */
+      images?: Array<{
+        src: string;
+        alt: string;
+        width: number;
+        height: number;
+      }>;
+    }>;
+  };
 }
 
 export interface Blog extends BasePageConfig {
