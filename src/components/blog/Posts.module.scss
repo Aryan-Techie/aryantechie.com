@@ -1,7 +1,5 @@
 .hover {
     border: 1px solid var(--static-transparent);
-    height: 100%;
-    min-height: 300px;
 
     &:hover {
         border: 1px solid var(--neutral-alpha-medium);

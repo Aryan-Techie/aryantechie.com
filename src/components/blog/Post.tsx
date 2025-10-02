@@ -29,8 +29,7 @@ export default function Post({ post, thumbnail, direction, postNumber, hideFromN
                 radius="l"
                 className={styles.hover}
                 mobileDirection="column"
-                fillWidth
-                fillHeight>
+                fillWidth>
                 {postNumber && postNumbering.enabled && (
                     <PostNumber 
                         number={postNumber}
@@ -55,8 +54,7 @@ export default function Post({ post, thumbnail, direction, postNumber, hideFromN
                     position="relative"
                     fillWidth gap="4"
                     padding="24"
-                    vertical="center"
-                    flex={1}>
+                    vertical="center">
                     {hideFromNav ? (
                         <Text
                             variant="heading-strong-l"
