@@ -110,6 +110,10 @@ const about = {
     display: false,
     link: "https://cal.com/aroice",
   },
+  resume: {
+    display: true,
+    link: "/files/Resume.pdf",
+  },
   intro: {
     display: true,
     title: "Introduction",

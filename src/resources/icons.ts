@@ -13,6 +13,7 @@ import {
   HiOutlineDocument,
   HiOutlineGlobeAsiaAustralia,
   HiOutlineRocketLaunch,
+  HiDocumentText,
 } from "react-icons/hi2";
 
 import {
@@ -113,6 +114,7 @@ export const iconLibrary: Record<string, IconType> = {
   threads: FaThreads,
   arrowUpRightFromSquare: HiArrowTopRightOnSquare,
   document: HiOutlineDocument,
+  resume: HiDocumentText,
   rocket: HiOutlineRocketLaunch,
   javascript: SiJavascript,
   nextjs: SiNextdotjs,

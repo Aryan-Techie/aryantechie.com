@@ -111,8 +111,77 @@ export default function About() {
                 ))}
               </Flex>
             )}
+            {(about.calendar.display || about.resume.display) && (
+              <Flex fillWidth gap="12" marginTop="m" wrap horizontal="center">
+                {about.calendar.display && (
+                  <a
+                    href={about.calendar.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Flex
+                      fitWidth
+                      border="brand-alpha-medium"
+                      className={styles.blockAlign}
+                      style={{
+                        backdropFilter: "blur(var(--static-space-1))",
+                        cursor: "pointer",
+                      }}
+                      background="brand-alpha-weak"
+                      radius="full"
+                      padding="4"
+                      gap="8"
+                      vertical="center"
+                    >
+                      <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
+                      <Flex paddingX="8">Schedule a call</Flex>
+                      <IconButton
+                        data-border="rounded"
+                        variant="secondary"
+                        icon="chevronRight"
+                      />
+                    </Flex>
+                  </a>
+                )}
+                {about.resume.display && (
+                  <a
+                    href={about.resume.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Flex
+                      fitWidth
+                      border="brand-alpha-medium"
+                      className={styles.blockAlign}
+                      style={{
+                        backdropFilter: "blur(var(--static-space-1))",
+                        cursor: "pointer",
+                      }}
+                      background="brand-alpha-weak"
+                      radius="full"
+                      padding="4"
+                      gap="8"
+                      vertical="center"
+                    >
+                      <Icon paddingLeft="12" name="resume" onBackground="brand-weak" />
+                      <Flex paddingX="8">
+                        <Text style={{ color: "white" }}>My Resume</Text>
+                      </Flex>
+                      <IconButton
+                        data-border="rounded"
+                        variant="secondary"
+                        icon="chevronRight"
+                      />
+                    </Flex>
+                  </a>
+                )}
+              </Flex>
+            )}
           </Column>
         )}
+        
         <Column className={styles.blockAlign} flex={9} maxWidth={40}>
           <Column
             id={about.intro.title}
@@ -121,31 +190,6 @@ export default function About() {
             vertical="center"
             marginBottom="32"
           >
-            {about.calendar.display && (
-              <Flex
-                fitWidth
-                border="brand-alpha-medium"
-                className={styles.blockAlign}
-                style={{
-                  backdropFilter: "blur(var(--static-space-1))",
-                }}
-                background="brand-alpha-weak"
-                radius="full"
-                padding="4"
-                gap="8"
-                marginBottom="m"
-                vertical="center"
-              >
-                <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Flex paddingX="8">Schedule a call</Flex>
-                <IconButton
-                  href={about.calendar.link}
-                  data-border="rounded"
-                  variant="secondary"
-                  icon="chevronRight"
-                />
-              </Flex>
-            )}
             <Heading className={styles.textAlign} variant="display-strong-xl">
               {person.name}
             </Heading>
@@ -188,10 +232,11 @@ export default function About() {
           </Column>
 
           {about.intro.display && (
-            <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="xl">
+            <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="l">
               {about.intro.description}
             </Column>
           )}
+
 
           {about.intro.display && about.work.display && (
             <Line background="neutral-alpha-weak" marginY="40" />
