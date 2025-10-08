@@ -63,8 +63,8 @@ const fonts = {
 const style = {
   theme: "system", // dark | light | system
   neutral: "gray", // sand | gray | slate | custom
-  brand: "cyan", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
-  accent: "red", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
+  brand: "blue", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
+  accent: "gray", // blue | indigo | violet | magenta | pink | red | orange | yellow | moss | green | emerald | aqua | cyan | custom
   solid: "contrast", // color | contrast
   solidStyle: "flat", // flat | plastic
   border: "playful", // rounded | playful | conservative
@@ -186,10 +186,10 @@ const sameAs = {
   x: "https://www.x.com/aryantechie",
   linkedin: "https://ie.linkedin.com/in/aryantechie",
   discord: "https://discord.gg/cEY3z9ejnA",
-  github: "https://github.com/aryan-techie",
+  github: "https://github.com/aryan-techie", // New addition - GitHub link
 };
 
-// social sharing configuration for blog & work posts
+// social sharing configuration for blog & work posts (Updated with new platform options)
 const socialSharing = {
   display: true,
   platforms: {

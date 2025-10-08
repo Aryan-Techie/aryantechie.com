@@ -167,7 +167,7 @@ export default function About() {
                     >
                       <Icon paddingLeft="12" name="resume" onBackground="brand-weak" />
                       <Flex paddingX="8">
-                        <Text style={{ color: "white" }}>My Resume</Text>
+                        <Text onBackground="brand-weak">My Resume</Text>
                       </Flex>
                       <IconButton
                         data-border="rounded"
