@@ -78,8 +78,8 @@ const OnceUIIcon: IconType = () => {
   }, []);
   
   const iconSrc = theme === 'light' 
-    ? "https://docs.once-ui.com/trademark/icon-light.svg"
-    : "https://docs.once-ui.com/trademark/icon-dark.svg";
+    ? "/files/svg/once-ui-icon-light.svg"
+    : "/files/svg/once-ui-icon-dark.svg";
     
   return React.createElement('img', {
     src: iconSrc,
