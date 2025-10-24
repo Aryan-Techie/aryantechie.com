@@ -49,7 +49,7 @@ import {
   SiGit,
 } from "react-icons/si";
 
-import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaTwitter, FaInstagram, FaGlobe, FaProductHunt, FaYoutube, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram } from "react-icons/fa6";
+import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaTwitter, FaInstagram, FaGlobe, FaProductHunt, FaYoutube, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, FaPenNib } from "react-icons/fa6";
 
 // Custom Once UI Icon component with theme support
 const OnceUIIcon: IconType = () => {
@@ -144,6 +144,7 @@ export const iconLibrary: Record<string, IconType> = {
   reddit: FaReddit,
   telegram: FaTelegram,
   onceui: OnceUIIcon,
+  substack: FaPenNib,
 };
 
 export type IconLibrary = typeof iconLibrary;

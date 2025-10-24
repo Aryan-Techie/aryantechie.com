@@ -62,6 +62,13 @@ const social = [
     icon: "twitter",
     link: "https://www.x.com/realaroice",
   },
+
+  {
+    name: "Substack",
+    icon: "substack",
+    link: "https://www.aryantechie.substack.com",
+  },
+  
   {
     name: "Email",
     icon: "email",
