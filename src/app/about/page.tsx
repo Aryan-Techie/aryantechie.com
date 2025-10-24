@@ -203,7 +203,9 @@ export default function About() {
             </Text>
             {social.length > 0 && (
               <Flex className={styles.blockAlign} paddingTop="20" paddingBottom="8" gap="8" wrap horizontal="center" fitWidth data-border="rounded">
-                {social.map(
+                {social
+                  .filter((item) => item.essential)
+                  .map(
                   (item) =>
                     item.link && (
                         <React.Fragment key={item.name}>

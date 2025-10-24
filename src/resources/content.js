@@ -27,30 +27,36 @@ const newsletter = {
 const social = [
   // Links are automatically displayed.
   // Import new icons in /once-ui/icons.ts
+  // Set essential: true for links you want to show on the about page
   {
     name: "aroice.in",
     icon: "globe",
     link: "https://aroice.in",
+    essential: true,
   },
   {
     name: "Instagram",
     icon: "instagram",
     link: `https://instagram.com/aryantechie`,
+    essential: false,
   },
   {
     name: "YouTube",
     icon: "youtube",
     link: `https://youtube.com/@aroice`,
+    essential: true,
   },
   {
     name: "GitHub",
     icon: "github",
     link: "https://github.com/aryan-techie",
+    essential: true,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
     link: "https://ie.linkedin.com/in/aryantechie",
+    essential: true,
   },
   // {
   //   name: "ProductHunt",
@@ -61,18 +67,21 @@ const social = [
     name: "X (Twitter)",
     icon: "twitter",
     link: "https://www.x.com/realaroice",
+    essential: false,
   },
 
   {
     name: "Substack",
     icon: "substack",
     link: "https://www.aryantechie.substack.com",
+    essential: false,
   },
   
   {
     name: "Email",
     icon: "email",
     link: `mailto:${person.email}`,
+    essential: true,
   },
 ];
 
