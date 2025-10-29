@@ -73,7 +73,7 @@ const social = [
   {
     name: "Substack",
     icon: "substack",
-    link: "https://www.aryantechie.substack.com",
+    link: "https://aryantechie.substack.com",
     essential: false,
   },
   
