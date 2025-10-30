@@ -79,6 +79,13 @@ const social = [
   },
   
   {
+    name: "Discord",
+    icon: "discord",
+    link: "https://discord.gg/cEY3z9ejnA",
+    essential: false,
+  },
+  
+  {
     name: "Email",
     icon: "email",
     link: `mailto:${person.email}`,
