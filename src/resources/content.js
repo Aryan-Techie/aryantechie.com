@@ -41,6 +41,12 @@ const social = [
     essential: false,
   },
   {
+    name: "X (Twitter)",
+    icon: "twitter",
+    link: "https://www.x.com/realaroice",
+    essential: false,
+  },
+  {
     name: "YouTube",
     icon: "youtube",
     link: `https://youtube.com/@aroice`,
@@ -64,19 +70,7 @@ const social = [
     link: "https://www.producthunt.com/@aryantechie",
     essential: false,
   },
-  {
-    name: "X (Twitter)",
-    icon: "twitter",
-    link: "https://www.x.com/realaroice",
-    essential: false,
-  },
 
-  {
-    name: "Substack",
-    icon: "substack",
-    link: "https://aryantechie.substack.com",
-    essential: false,
-  },
   
   {
     name: "Discord",
@@ -85,6 +79,12 @@ const social = [
     essential: false,
   },
   
+  {
+    name: "Substack",
+    icon: "substack",
+    link: "https://aryantechie.substack.com",
+    essential: false,
+  },
   {
     name: "Email",
     icon: "email",

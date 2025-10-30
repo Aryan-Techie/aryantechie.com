@@ -7,7 +7,7 @@ import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 
 import { Background, Column, Flex, Meta, opacity, SpacingToken } from "@once-ui-system/core";
-import { Footer, Header, RouteGuard, Providers } from '@/components';
+import { ConditionalFooter, Header, RouteGuard, Providers } from '@/components';
 import { baseURL, effects, fonts, style, dataStyle, home } from '@/resources';
 
 export async function generateMetadata() {
@@ -182,7 +182,7 @@ export default async function RootLayout({
                 </RouteGuard>
               </Flex>
             </Flex>
-            <Footer/>
+            <ConditionalFooter/>
           </Column>
         </Providers>
         <Analytics />

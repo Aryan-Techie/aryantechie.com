@@ -1,5 +1,7 @@
 export { Header } from "@/components/Header";
 export { Footer } from "@/components/Footer";
+export { Footer2 } from "@/components/Footer2";
+export { ConditionalFooter } from "@/components/ConditionalFooter";
 export { Mailchimp } from "@/components/Mailchimp";
 export { ProjectCard } from "@/components/ProjectCard";
 export { HeadingLink } from "@/components/HeadingLink";
