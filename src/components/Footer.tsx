@@ -39,7 +39,7 @@ export const Footer = () => {
       border="neutral-medium"
       borderStyle="solid"
     >
-      <Row fillWidth horizontal="center" gap="40" wrap paddingX="2">
+      <Row fillWidth horizontal="center" gap="64" wrap paddingX="2">
         <Column gap="12" textVariant="label-default-m">
           <Row paddingX="4" marginBottom="8">
             Navigate
